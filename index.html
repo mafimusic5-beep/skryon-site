@@ -6,403 +6,269 @@
   <title>Skryon — ключ доступа к приложению</title>
   <style>
     :root {
-      --bg: #07111f;
-      --bg2: #0b1728;
-      --glass: rgba(255, 255, 255, .075);
-      --glass-strong: rgba(255, 255, 255, .12);
-      --line: rgba(255, 255, 255, .14);
-      --text: #f8fafc;
-      --muted: #b8c4d6;
-      --soft: #dbeafe;
-      --blue: #5aa7ff;
-      --blue2: #246bfe;
-      --cyan: #67e8f9;
-      --green: #3ee27a;
-      --dark: #050b14;
-      --shadow: 0 30px 100px rgba(0, 0, 0, .42);
+      --text: #111827;
+      --muted: #667085;
+      --line: #e5e7eb;
+      --blue: #2563eb;
+      --soft: #f8fafc;
+      --green: #16a34a;
     }
 
     * { box-sizing: border-box; }
-    html { scroll-behavior: smooth; }
 
     body {
       margin: 0;
-      font-family: Inter, Arial, Helvetica, sans-serif;
-      background:
-        radial-gradient(circle at 18% 4%, rgba(36, 107, 254, .42), transparent 30%),
-        radial-gradient(circle at 86% 14%, rgba(103, 232, 249, .14), transparent 28%),
-        linear-gradient(180deg, var(--bg), var(--bg2) 46%, #08111e);
+      background: #fff;
       color: var(--text);
-      overflow-x: hidden;
+      font-family: Arial, Helvetica, sans-serif;
     }
 
-    body::before {
-      content: "";
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      background-image:
-        linear-gradient(rgba(255,255,255,.035) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(255,255,255,.035) 1px, transparent 1px);
-      background-size: 54px 54px;
-      mask-image: linear-gradient(to bottom, rgba(0,0,0,.9), transparent 78%);
+    a {
+      color: inherit;
+      text-decoration: none;
     }
 
-    a { color: inherit; text-decoration: none; }
-    .container { width: min(1160px, calc(100% - 32px)); margin: 0 auto; }
+    .container {
+      width: min(1120px, calc(100% - 32px));
+      margin: 0 auto;
+    }
 
     header {
       position: sticky;
       top: 0;
-      z-index: 20;
-      backdrop-filter: blur(18px);
-      background: rgba(7, 17, 31, .72);
+      background: rgba(255,255,255,.94);
+      backdrop-filter: blur(14px);
       border-bottom: 1px solid var(--line);
+      z-index: 10;
     }
 
     .nav {
-      min-height: 74px;
+      min-height: 72px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 18px;
+      gap: 20px;
     }
 
     .brand {
-      display: flex;
-      align-items: center;
-      gap: 12px;
       font-size: 22px;
-      font-weight: 900;
-      letter-spacing: -.4px;
-    }
-
-    .mark {
-      width: 42px;
-      height: 42px;
-      border-radius: 15px;
-      display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(90,167,255,1), rgba(103,232,249,.78));
-      color: #06101d;
-      box-shadow: 0 18px 45px rgba(36,107,254,.38);
-    }
-
-    .links { display: flex; align-items: center; gap: 20px; color: var(--muted); font-size: 15px; }
-    .links a:hover { color: var(--text); }
-
-    .nav-cta {
-      padding: 11px 15px;
-      border-radius: 999px;
-      background: rgba(90,167,255,.15);
-      border: 1px solid rgba(90,167,255,.34);
-      color: var(--soft);
       font-weight: 800;
+      letter-spacing: -0.4px;
     }
 
-    .hero { padding: 72px 0 48px; }
-
-    .hero-grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.12fr) minmax(320px, .88fr);
-      gap: 34px;
-      align-items: center;
+    .nav-links {
+      display: flex;
+      gap: 22px;
+      color: var(--muted);
+      font-size: 15px;
     }
 
-    .pill {
-      display: inline-flex;
-      align-items: center;
-      gap: 10px;
-      padding: 10px 14px;
-      border-radius: 999px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.06);
-      color: var(--soft);
-      margin-bottom: 22px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.08);
+    .nav-links a:hover {
+      color: var(--text);
     }
 
-    .pulse {
-      width: 9px;
-      height: 9px;
-      border-radius: 50%;
-      background: var(--green);
-      box-shadow: 0 0 0 8px rgba(62,226,122,.12);
+    .hero {
+      padding: 95px 0 75px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .label {
+      color: var(--blue);
+      font-weight: 700;
+      margin-bottom: 18px;
     }
 
     h1 {
       margin: 0;
-      font-size: clamp(42px, 7vw, 78px);
-      line-height: .95;
-      letter-spacing: -3px;
+      max-width: 880px;
+      font-size: clamp(44px, 7vw, 82px);
+      line-height: .96;
+      letter-spacing: -3.4px;
     }
 
-    .gradient-text {
-      background: linear-gradient(90deg, #ffffff, #93c5fd 45%, #67e8f9);
-      -webkit-background-clip: text;
-      background-clip: text;
-      color: transparent;
-    }
-
-    .lead {
+    .hero p {
       max-width: 720px;
-      margin: 24px 0 0;
+      margin: 26px 0 0;
       color: var(--muted);
       font-size: clamp(18px, 2.2vw, 23px);
       line-height: 1.55;
     }
 
-    .hero-actions { display: flex; flex-wrap: wrap; gap: 13px; margin-top: 32px; }
+    .actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 34px;
+    }
 
     .btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      gap: 10px;
-      min-height: 52px;
+      min-height: 50px;
       padding: 0 21px;
-      border-radius: 16px;
-      border: 1px solid transparent;
-      font-weight: 900;
-      cursor: pointer;
+      border-radius: 999px;
+      border: 1px solid #d0d5dd;
+      font-weight: 700;
     }
 
     .btn-primary {
-      color: #06101d;
-      background: linear-gradient(135deg, #67e8f9, #5aa7ff);
-      box-shadow: 0 22px 52px rgba(36,107,254,.38);
+      background: #111827;
+      color: #fff;
+      border-color: #111827;
     }
 
     .btn-secondary {
-      color: var(--text);
-      background: rgba(255,255,255,.07);
-      border-color: var(--line);
+      background: #fff;
+      color: #111827;
     }
 
-    .trust-row {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-      margin-top: 28px;
+    section {
+      padding: 72px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .section-grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 64px;
+      align-items: start;
+    }
+
+    h2 {
+      margin: 0;
+      font-size: clamp(30px, 4vw, 48px);
+      line-height: 1.08;
+      letter-spacing: -1.8px;
+    }
+
+    .section-text {
+      margin-top: 18px;
       color: var(--muted);
+      line-height: 1.6;
+      font-size: 17px;
     }
 
-    .chip {
-      padding: 9px 12px;
-      border: 1px solid var(--line);
-      background: rgba(255,255,255,.045);
-      border-radius: 999px;
-      font-size: 14px;
+    .line-list {
+      border-top: 1px solid var(--line);
     }
 
-    .device-card {
-      position: relative;
-      background: linear-gradient(180deg, rgba(255,255,255,.12), rgba(255,255,255,.045));
-      border: 1px solid var(--line);
-      border-radius: 34px;
-      padding: 22px;
-      box-shadow: var(--shadow);
-      overflow: hidden;
-    }
-
-    .device-card::before {
-      content: "";
-      position: absolute;
-      width: 220px;
-      height: 220px;
-      right: -80px;
-      top: -70px;
-      background: rgba(103,232,249,.18);
-      border-radius: 50%;
-      filter: blur(10px);
-    }
-
-    .phone {
-      position: relative;
-      background: rgba(5,11,20,.8);
-      border: 1px solid rgba(255,255,255,.12);
-      border-radius: 28px;
-      padding: 20px;
-      min-height: 420px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
-    }
-
-    .phone-top { display: flex; align-items: center; justify-content: space-between; color: var(--muted); }
-    .signal { display: flex; gap: 5px; align-items: end; }
-    .bar { width: 6px; background: var(--blue); border-radius: 99px; }
-    .bar:nth-child(1) { height: 10px; opacity: .45; }
-    .bar:nth-child(2) { height: 16px; opacity: .7; }
-    .bar:nth-child(3) { height: 23px; }
-
-    .shield {
-      width: 124px;
-      height: 124px;
-      border-radius: 38px;
-      margin: 34px auto 18px;
+    .line-item {
       display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, rgba(90,167,255,.28), rgba(103,232,249,.11));
-      border: 1px solid rgba(103,232,249,.26);
-      font-size: 54px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.08), 0 30px 70px rgba(36,107,254,.2);
+      grid-template-columns: 180px 1fr;
+      gap: 28px;
+      padding: 26px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .phone h2 { text-align: center; margin: 0; font-size: 28px; }
-    .phone p { text-align: center; color: var(--muted); line-height: 1.5; margin: 10px 0 0; }
-
-    .key-box {
-      margin-top: 22px;
-      background: rgba(255,255,255,.065);
-      border: 1px solid var(--line);
-      border-radius: 18px;
-      padding: 15px;
-      font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
-      color: #bfdbfe;
-      word-break: break-all;
-      font-size: 14px;
+    .line-item b {
+      font-size: 18px;
     }
 
-    .status-line {
-      margin-top: 16px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
+    .line-item p {
+      margin: 0;
       color: var(--muted);
-      border-top: 1px solid rgba(255,255,255,.08);
-      padding-top: 16px;
+      line-height: 1.6;
     }
 
-    section { padding: 48px 0; }
-    .section-head { margin-bottom: 26px; }
-    .section-kicker { color: var(--cyan); font-weight: 900; letter-spacing: .12em; font-size: 12px; text-transform: uppercase; margin-bottom: 10px; }
-    .section-title { font-size: clamp(30px, 4vw, 48px); line-height: 1.05; margin: 0; letter-spacing: -1.7px; }
-    .section-subtitle { max-width: 760px; color: var(--muted); font-size: 18px; line-height: 1.55; margin: 14px 0 0; }
+    .tariffs {
+      border-top: 1px solid #111827;
+    }
 
-    .features, .plans, .steps, .policy-grid {
+    .tariff {
       display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 18px;
+      grid-template-columns: 1.1fr .9fr .7fr .6fr;
+      gap: 22px;
+      align-items: center;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .card, .plan, .step, .policy-card {
-      background: var(--glass);
-      border: 1px solid var(--line);
-      border-radius: 26px;
-      padding: 24px;
-      box-shadow: inset 0 1px 0 rgba(255,255,255,.055);
+    .tariff-head {
+      padding: 14px 0;
+      color: var(--muted);
+      font-size: 13px;
+      text-transform: uppercase;
+      letter-spacing: .08em;
     }
 
-    .icon {
-      width: 48px;
-      height: 48px;
-      border-radius: 16px;
-      display: grid;
-      place-items: center;
-      margin-bottom: 15px;
-      background: rgba(90,167,255,.14);
-      border: 1px solid rgba(90,167,255,.18);
+    .tariff-name {
       font-size: 24px;
+      font-weight: 800;
+      letter-spacing: -0.6px;
     }
 
-    .card h3, .step h3, .policy-card h3 { margin: 0 0 10px; font-size: 21px; }
-    .card p, .step p, .policy-card p { margin: 0; color: var(--muted); line-height: 1.55; }
-
-    .plans { align-items: stretch; }
-    .plan { position: relative; overflow: hidden; display: flex; flex-direction: column; }
-    .plan.featured {
-      background: linear-gradient(180deg, rgba(36,107,254,.26), rgba(255,255,255,.08));
-      border-color: rgba(90,167,255,.48);
-      transform: translateY(-8px);
+    .devices {
+      color: var(--green);
+      font-weight: 800;
+      margin-top: 5px;
     }
 
-    .badge-plan {
-      position: absolute;
-      right: 18px;
-      top: 18px;
-      padding: 7px 10px;
-      border-radius: 999px;
-      background: rgba(103,232,249,.16);
-      border: 1px solid rgba(103,232,249,.28);
-      color: #cffafe;
-      font-size: 12px;
-      font-weight: 900;
+    .tariff-desc {
+      color: var(--muted);
+      line-height: 1.45;
     }
 
-    .plan h3 { margin: 0; font-size: 27px; }
-    .plan-desc { color: var(--muted); margin: 9px 0 0; line-height: 1.5; }
-    .price { margin: 22px 0 10px; font-size: 46px; font-weight: 950; letter-spacing: -1.8px; }
-    .price span { color: var(--muted); font-size: 16px; font-weight: 600; letter-spacing: 0; }
-    .devices { color: var(--soft); font-weight: 900; margin-bottom: 18px; }
+    .price {
+      font-size: 28px;
+      font-weight: 800;
+      white-space: nowrap;
+    }
 
-    .plan ul { list-style: none; padding: 0; margin: 0 0 22px; display: grid; gap: 11px; color: var(--muted); }
-    .plan li::before { content: "✓"; color: var(--green); margin-right: 9px; font-weight: 900; }
-    .plan .btn { margin-top: auto; width: 100%; }
+    .tariff a {
+      justify-self: end;
+      color: var(--blue);
+      font-weight: 800;
+    }
 
     .order-box {
-      margin-top: 18px;
-      display: grid;
-      grid-template-columns: 1fr .8fr;
-      gap: 18px;
-      align-items: stretch;
-    }
-
-    .order-main {
-      background: linear-gradient(135deg, rgba(103,232,249,.13), rgba(90,167,255,.1));
-      border: 1px solid rgba(103,232,249,.26);
-      border-radius: 28px;
-      padding: 26px;
-    }
-
-    .order-main h3 { margin: 0 0 10px; font-size: 28px; }
-    .order-main p { margin: 0; color: var(--muted); line-height: 1.6; }
-
-    .fake-form {
-      margin-top: 18px;
-      display: grid;
-      gap: 12px;
-    }
-
-    .field {
-      min-height: 52px;
-      border-radius: 16px;
+      background: var(--soft);
       border: 1px solid var(--line);
-      background: rgba(5,11,20,.44);
+      padding: 30px;
+    }
+
+    .order-box h3 {
+      margin: 0 0 8px;
+      font-size: 24px;
+      letter-spacing: -0.7px;
+    }
+
+    .order-box p {
+      margin: 0;
       color: var(--muted);
-      display: flex;
-      align-items: center;
-      padding: 0 16px;
+      line-height: 1.55;
     }
 
-    .order-side {
-      background: rgba(255,255,255,.06);
-      border: 1px solid var(--line);
-      border-radius: 28px;
-      padding: 26px;
+    .steps {
+      margin-top: 28px;
+      border-top: 1px solid var(--line);
     }
 
-    .order-side h3 { margin: 0 0 12px; }
-    .mini-list { display: grid; gap: 12px; color: var(--muted); line-height: 1.45; }
-    .mini-list b { color: var(--text); }
-
-    .steps { grid-template-columns: repeat(3, 1fr); }
-    .number {
-      width: 40px;
-      height: 40px;
-      border-radius: 50%;
+    .step {
       display: grid;
-      place-items: center;
-      background: linear-gradient(135deg, var(--blue2), var(--blue));
-      color: white;
-      font-weight: 950;
-      margin-bottom: 16px;
+      grid-template-columns: 70px 1fr;
+      gap: 24px;
+      padding: 24px 0;
+      border-bottom: 1px solid var(--line);
     }
 
-    .policy-grid { grid-template-columns: repeat(2, 1fr); }
+    .step span {
+      color: var(--blue);
+      font-weight: 800;
+    }
+
+    .step h3 {
+      margin: 0 0 7px;
+      font-size: 20px;
+    }
+
+    .step p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.55;
+    }
 
     footer {
-      border-top: 1px solid var(--line);
       padding: 34px 0 42px;
       color: var(--muted);
     }
@@ -410,235 +276,241 @@
     .footer-row {
       display: flex;
       justify-content: space-between;
-      gap: 18px;
+      gap: 20px;
       flex-wrap: wrap;
-      align-items: center;
+      font-size: 14px;
     }
 
-    .footer-links { display: flex; gap: 14px; flex-wrap: wrap; }
-    .footer-links a { color: var(--soft); }
+    .footer-links {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
 
-    @media (max-width: 900px) {
-      .hero-grid, .features, .plans, .steps, .order-box, .policy-grid { grid-template-columns: 1fr; }
-      .links { display: none; }
-      .plan.featured { transform: none; }
-      .hero { padding-top: 46px; }
-      h1 { letter-spacing: -1.8px; }
-      .phone { min-height: 360px; }
+    .footer-links a {
+      color: var(--text);
+    }
+
+    @media (max-width: 820px) {
+      .nav-links { display: none; }
+
+      .hero {
+        padding: 64px 0 52px;
+      }
+
+      h1 {
+        letter-spacing: -2px;
+      }
+
+      .section-grid,
+      .line-item,
+      .tariff {
+        grid-template-columns: 1fr;
+      }
+
+      .section-grid {
+        gap: 28px;
+      }
+
+      .tariff {
+        gap: 10px;
+      }
+
+      .tariff-head {
+        display: none;
+      }
+
+      .tariff a {
+        justify-self: start;
+      }
+
+      section {
+        padding: 54px 0;
+      }
     }
   </style>
 </head>
 <body>
   <header>
     <div class="container nav">
-      <a class="brand" href="#top" aria-label="Skryon">
-        <span class="mark">S</span>
-        <span>Skryon</span>
-      </a>
-      <nav class="links" aria-label="Навигация">
-        <a href="#about">Идея</a>
-        <a href="#plans">Тарифы</a>
-        <a href="#order">Покупка ключа</a>
+      <a href="#top" class="brand">Skryon</a>
+      <nav class="nav-links">
+        <a href="#about">О сервисе</a>
+        <a href="#tariffs">Тарифы</a>
+        <a href="#order">Покупка</a>
         <a href="#policy">Политика</a>
-        <a class="nav-cta" href="#plans">Выбрать тариф</a>
       </nav>
     </div>
   </header>
 
   <main id="top">
     <section class="hero">
-      <div class="container hero-grid">
-        <div>
-          <div class="pill"><span class="pulse"></span> Без аккаунтов — доступ по ключу</div>
-          <h1><span class="gradient-text">Защищённое соединение</span> для твоего приложения</h1>
-          <p class="lead">
-            Skryon — это доступ к приложению через прозрачный ключ. Без регистрации, без личного кабинета и без лишних данных: выбрал тариф, получил ключ, активировал в приложении.
-          </p>
-          <div class="hero-actions">
-            <a class="btn btn-primary" href="#plans">Купить ключ</a>
-            <a class="btn btn-secondary" href="#about">Что входит</a>
-          </div>
-          <div class="trust-row">
-            <span class="chip">1 ключ = выбранное число устройств</span>
-            <span class="chip">Без аккаунтов</span>
-            <span class="chip">Ручная выдача на старте</span>
-          </div>
-        </div>
-
-        <div class="device-card" aria-label="Превью приложения">
-          <div class="phone">
-            <div class="phone-top">
-              <span>Skryon App</span>
-              <span class="signal"><i class="bar"></i><i class="bar"></i><i class="bar"></i></span>
-            </div>
-            <div>
-              <div class="shield">🛡️</div>
-              <h2>Ключ активен</h2>
-              <p>Соединение защищено. Доступ работает на устройствах твоего тарифа.</p>
-              <div class="key-box">SKRYON-KEY-••••-••••-••••</div>
-            </div>
-            <div class="status-line"><span>Статус</span><b>Готово</b></div>
-          </div>
+      <div class="container">
+        <div class="label">Ключ доступа к приложению</div>
+        <h1>Безопасное соединение без аккаунтов.</h1>
+        <p>
+          Skryon выдаёт прозрачный ключ для доступа к приложению. Клиент выбирает тариф,
+          получает ключ и вводит его в приложении. Без регистрации на сайте и без лишних данных.
+        </p>
+        <div class="actions">
+          <a class="btn btn-primary" href="#tariffs">Выбрать тариф</a>
+          <a class="btn btn-secondary" href="#order">Как купить</a>
         </div>
       </div>
     </section>
 
     <section id="about">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Идея приложения</div>
-          <h2 class="section-title">Меньше лишнего — больше контроля</h2>
-          <p class="section-subtitle">
-            Основная идея Skryon — безопасное соединение от злоумышленников и простой доступ через ключ. На сайте нет аккаунтов: клиент получает ключ и вводит его в приложении.
+      <div class="container section-grid">
+        <div>
+          <div class="label">О сервисе</div>
+          <h2>Чистый доступ через ключ.</h2>
+          <p class="section-text">
+            Сайт нужен для покупки и получения ключа. Сам ключ активируется в приложении Skryon.
           </p>
         </div>
 
-        <div class="features">
-          <article class="card">
-            <div class="icon">🔑</div>
-            <h3>Прозрачные ключи</h3>
-            <p>Ключ выдаётся клиенту напрямую. Его можно заменить, продлить или отключить без регистрации на сайте.</p>
-          </article>
-          <article class="card">
-            <div class="icon">📱</div>
-            <h3>Слоты устройств</h3>
-            <p>Тариф определяет, сколько устройств может использовать доступ: 1, 2 или 5.</p>
-          </article>
-          <article class="card">
-            <div class="icon">🛡️</div>
-            <h3>Защита соединения</h3>
-            <p>Формулируем сервис как безопасное подключение для защиты соединения и личного доступа.</p>
-          </article>
+        <div class="line-list">
+          <div class="line-item">
+            <b>Ключ</b>
+            <p>Главный способ доступа. Его можно выдать, продлить, заменить или отключить.</p>
+          </div>
+          <div class="line-item">
+            <b>Устройства</b>
+            <p>Один слот равен одному устройству. Количество слотов зависит от тарифа.</p>
+          </div>
+          <div class="line-item">
+            <b>Без аккаунтов</b>
+            <p>На сайте нет регистрации. Покупка привязана к ключу, а не к профилю пользователя.</p>
+          </div>
+          <div class="line-item">
+            <b>Защита</b>
+            <p>Идея приложения — безопасное подключение для защиты соединения.</p>
+          </div>
         </div>
       </div>
     </section>
 
-    <section id="plans">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Тарифы</div>
-          <h2 class="section-title">Выбери ключ под свои устройства</h2>
-          <p class="section-subtitle">Цена указана за месяц доступа. Один слот — одно устройство.</p>
+    <section id="tariffs">
+      <div class="container section-grid">
+        <div>
+          <div class="label">Тарифы</div>
+          <h2>Выбери количество устройств.</h2>
+          <p class="section-text">Цена указана за месяц доступа к приложению.</p>
         </div>
 
-        <div class="plans">
-          <article class="plan">
-            <h3>Личный</h3>
-            <p class="plan-desc">Для одного основного устройства.</p>
-            <div class="price">200₽ <span>/ месяц</span></div>
-            <div class="devices">1 устройство</div>
-            <ul>
-              <li>1 слот доступа</li>
-              <li>Персональный ключ</li>
-              <li>Подходит для телефона или ПК</li>
-            </ul>
-            <a class="btn btn-secondary" href="#order">Купить Личный</a>
-          </article>
+        <div class="tariffs">
+          <div class="tariff tariff-head">
+            <div>Тариф</div>
+            <div>Описание</div>
+            <div>Цена</div>
+            <div></div>
+          </div>
 
-          <article class="plan featured">
-            <span class="badge-plan">Оптимально</span>
-            <h3>Личный+</h3>
-            <p class="plan-desc">Для телефона и компьютера.</p>
-            <div class="price">300₽ <span>/ месяц</span></div>
-            <div class="devices">2 устройства</div>
-            <ul>
-              <li>2 слота доступа</li>
-              <li>Один ключ для двух устройств</li>
-              <li>Лучший вариант для личного использования</li>
-            </ul>
-            <a class="btn btn-primary" href="#order">Купить Личный+</a>
-          </article>
+          <div class="tariff">
+            <div>
+              <div class="tariff-name">Личный</div>
+              <div class="devices">1 устройство</div>
+            </div>
+            <div class="tariff-desc">Для одного телефона или компьютера.</div>
+            <div class="price">200₽</div>
+            <a href="#order">Купить</a>
+          </div>
 
-          <article class="plan">
-            <h3>Семейный</h3>
-            <p class="plan-desc">Для семьи или нескольких устройств.</p>
-            <div class="price">500₽ <span>/ месяц</span></div>
-            <div class="devices">5 устройств</div>
-            <ul>
-              <li>5 слотов доступа</li>
-              <li>Удобно для семьи</li>
-              <li>Самая выгодная цена за устройство</li>
-            </ul>
-            <a class="btn btn-secondary" href="#order">Купить Семейный</a>
-          </article>
+          <div class="tariff">
+            <div>
+              <div class="tariff-name">Личный+</div>
+              <div class="devices">2 устройства</div>
+            </div>
+            <div class="tariff-desc">Для телефона и компьютера.</div>
+            <div class="price">300₽</div>
+            <a href="#order">Купить</a>
+          </div>
+
+          <div class="tariff">
+            <div>
+              <div class="tariff-name">Семейный</div>
+              <div class="devices">5 устройств</div>
+            </div>
+            <div class="tariff-desc">Для семьи или нескольких устройств.</div>
+            <div class="price">500₽</div>
+            <a href="#order">Купить</a>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="order">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Покупка ключа</div>
-          <h2 class="section-title">Как будет проходить покупка</h2>
-          <p class="section-subtitle">Пока сайт работает как первая версия. Аккаунтов не будет: покупка привязывается к ключу, а не к профилю пользователя.</p>
+      <div class="container section-grid">
+        <div>
+          <div class="label">Покупка</div>
+          <h2>Покупка без личного кабинета.</h2>
+          <p class="section-text">
+            Клиент выбирает тариф, оплачивает и получает ключ. Аккаунт на сайте не создаётся.
+          </p>
         </div>
 
-        <div class="order-box">
-          <div class="order-main">
-            <h3>Оформление без регистрации</h3>
-            <p>Клиент выбирает тариф, оплачивает доступ и получает ключ для приложения. Позже здесь можно добавить форму заявки или кнопку оплаты.</p>
-            <div class="fake-form">
-              <div class="field">1. Выбрать тариф: Личный / Личный+ / Семейный</div>
-              <div class="field">2. Получить ключ после подтверждения</div>
-              <div class="field">3. Ввести ключ в приложении Skryon</div>
-            </div>
+        <div>
+          <div class="order-box">
+            <h3>Сейчас оформление вручную</h3>
+            <p>
+              Напишите выбранный тариф: Личный, Личный+ или Семейный.
+              После подтверждения оплаты выдаётся ключ для приложения.
+            </p>
           </div>
 
-          <aside class="order-side">
-            <h3>Что хранится</h3>
-            <div class="mini-list">
-              <div><b>Ключ:</b> основной способ доступа</div>
-              <div><b>Тариф:</b> количество доступных устройств</div>
-              <div><b>Срок:</b> дата окончания доступа</div>
-              <div><b>Аккаунт:</b> не требуется</div>
+          <div class="steps">
+            <div class="step">
+              <span>01</span>
+              <div>
+                <h3>Выбор тарифа</h3>
+                <p>Определяется количество устройств: 1, 2 или 5.</p>
+              </div>
             </div>
-          </aside>
-        </div>
-      </div>
-    </section>
 
-    <section>
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Порядок работы</div>
-          <h2 class="section-title">От покупки до подключения</h2>
-        </div>
-        <div class="steps">
-          <article class="step">
-            <div class="number">1</div>
-            <h3>Выбор тарифа</h3>
-            <p>Клиент выбирает нужное количество устройств.</p>
-          </article>
-          <article class="step">
-            <div class="number">2</div>
-            <h3>Выдача ключа</h3>
-            <p>После оплаты клиент получает прозрачный ключ доступа.</p>
-          </article>
-          <article class="step">
-            <div class="number">3</div>
-            <h3>Активация</h3>
-            <p>Ключ вводится в приложении, после чего доступ становится активным.</p>
-          </article>
+            <div class="step">
+              <span>02</span>
+              <div>
+                <h3>Выдача ключа</h3>
+                <p>Ключ выдаётся после подтверждения покупки.</p>
+              </div>
+            </div>
+
+            <div class="step">
+              <span>03</span>
+              <div>
+                <h3>Активация в приложении</h3>
+                <p>Клиент вводит ключ в приложении Skryon и получает доступ.</p>
+              </div>
+            </div>
+          </div>
         </div>
       </div>
     </section>
 
     <section id="policy">
-      <div class="container">
-        <div class="section-head">
-          <div class="section-kicker">Футер и политика</div>
-          <h2 class="section-title">Правила и прозрачность</h2>
-          <p class="section-subtitle">На сайте можно разместить короткие правила до отдельной юридической страницы.</p>
+      <div class="container section-grid">
+        <div>
+          <div class="label">Политика</div>
+          <h2>Коротко и прозрачно.</h2>
+          <p class="section-text">Позже эти пункты можно вынести на отдельные страницы.</p>
         </div>
-        <div class="policy-grid">
-          <article class="policy-card" id="privacy">
-            <h3>Политика конфиденциальности</h3>
-            <p>Сайт не использует аккаунты. Для выдачи доступа может храниться только информация, необходимая для ключа: тариф, срок действия и статус доступа.</p>
-          </article>
-          <article class="policy-card" id="terms">
-            <h3>Условия использования</h3>
-            <p>Ключ предназначен для выбранного количества устройств. Передача ключа третьим лицам может привести к замене или отключению доступа.</p>
-          </article>
+
+        <div class="line-list">
+          <div class="line-item" id="privacy">
+            <b>Конфиденциальность</b>
+            <p>
+              Сайт не использует аккаунты. Для выдачи доступа может храниться только информация,
+              нужная для обслуживания ключа: тариф, срок действия и статус.
+            </p>
+          </div>
+
+          <div class="line-item" id="terms">
+            <b>Условия</b>
+            <p>
+              Ключ предназначен для выбранного количества устройств. Передача ключа третьим лицам
+              может привести к замене или отключению доступа.
+            </p>
+          </div>
         </div>
       </div>
     </section>
@@ -650,7 +522,7 @@
       <div class="footer-links">
         <a href="#privacy">Политика</a>
         <a href="#terms">Условия</a>
-        <a href="#plans">Тарифы</a>
+        <a href="#tariffs">Тарифы</a>
       </div>
     </div>
   </footer>
