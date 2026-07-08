@@ -1,210 +1,66 @@
 <!doctype html>
 <html lang="ru">
-<head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Skryon — защищённое подключение</title>
-  <meta name="description" content="Skryon — защищённое подключение для личного и семейного использования. Выберите тариф и получите ключ для приложения.">
-  <link rel="stylesheet" href="style.css">
-</head>
-<body>
-  <header class="site-header">
-    <div class="wrap header-inner">
-      <a class="logo" href="index.html" aria-label="Skryon главная">
-        <span class="logo-mark">S</span>
-        <span>Skryon</span>
-      </a>
-      <nav class="nav" aria-label="Главное меню">
-        <a href="#services">Услуги</a>
-        <a href="#how">Как работает</a>
-        <a href="#plans">Тарифы</a>
-        <a href="#faq">Вопросы</a>
-      </nav>
-      <a class="header-cta" href="pay.html">Купить ключ</a>
-    </div>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Skryon - система защиты</title>
+    <meta
+      name="description"
+      content="Skryon - тонкая система безопасности с пантерой как лицом бренда."
+    />
+    <link rel="icon" href="./assets/skryon-logo.png" />
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <header class="site-header">
+      <a class="header-brand" href="#" aria-label="Skryon">Skryon</a>
+    </header>
 
-  <main>
-    <section class="hero">
-      <div class="wrap hero-grid">
+    <main>
+      <section class="hero" aria-label="Главный экран Skryon">
+        <div class="hero-image" aria-hidden="true"></div>
+        <div class="hero-wash" aria-hidden="true"></div>
+
         <div class="hero-content">
-          <div class="eyebrow">Защищённое подключение по ключу</div>
-          <h1>Безопасный доступ для ваших устройств без лишних настроек.</h1>
-          <p class="hero-text">Skryon помогает защитить соединение в сети. Вы выбираете тариф, получаете ключ и добавляете его в приложение на телефоне, планшете или компьютере.</p>
+          <p class="eyebrow">Система защиты</p>
+          <h1 class="hero-title" aria-label="Невидимый периметр">
+            <span class="title-word">Невидимый</span>
+            <span class="title-rail" aria-hidden="true">
+              <span class="title-line"></span>
+            </span>
+            <span class="title-word title-word-tight">периметр</span>
+          </h1>
+          <p class="lead">
+            Тихая система защиты, которая смотрит глубже: периметр, события и
+            риски под одним проницательным контролем.
+          </p>
+
+          <div class="vpn-reminder" aria-label="Сигнал Skryon">
+            <span class="vpn-mark" aria-hidden="true">
+              <img src="./assets/skryon-logo.png" alt="" />
+            </span>
+            <span class="vpn-line" aria-hidden="true"></span>
+            <span class="vpn-copy">
+              <span>Защищённый туннель</span>
+              <strong>Зашифрованный периметр</strong>
+            </span>
+          </div>
+
           <div class="hero-actions">
-            <a class="btn primary" href="pay.html">Выбрать тариф</a>
-            <a class="btn secondary" href="#services">Что входит</a>
+            <a class="button button-primary" href="mailto:security@skryon.app">
+              Запросить доступ
+            </a>
+            <a class="button button-ghost" href="#vision">Посмотреть подход</a>
           </div>
-          <div class="trust-row">
-            <span>✓ Быстрый старт</span>
-            <span>✓ Без аккаунта</span>
-            <span>✓ Поддержка настройки</span>
+
+          <div class="thin-signals" aria-label="Ключевые принципы Skryon">
+            <span id="vision">Наблюдение</span>
+            <span id="control">Контроль</span>
+            <span id="response">Реакция</span>
           </div>
         </div>
+      </section>
 
-        <div class="hero-card" aria-label="Карточка Skryon">
-          <div class="orbit one"></div>
-          <div class="orbit two"></div>
-          <div class="phone-mockup">
-            <div class="phone-top"></div>
-            <div class="shield-sticker">🛡️</div>
-            <h3>Skryon Key</h3>
-            <p>Готов к подключению</p>
-            <div class="status-pill">Защита активна</div>
-          </div>
-          <div class="floating-note note-a">1–5 устройств</div>
-          <div class="floating-note note-b">ключ в приложении</div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="services">
-      <div class="wrap">
-        <div class="section-head">
-          <div class="eyebrow">Наши услуги</div>
-          <h2>Всё просто: ключ, приложение и безопасное подключение.</h2>
-          <p>Мы сделали сайт понятным для клиента: он сразу видит, что получает, сколько это стоит и как начать пользоваться.</p>
-        </div>
-
-        <div class="sticker-grid">
-          <article class="sticker-card blue">
-            <div class="sticker-icon">🔑</div>
-            <h3>Доступ по ключу</h3>
-            <p>После оплаты клиент получает ключ и вводит его в приложении. Без сложной регистрации и лишних действий.</p>
-          </article>
-          <article class="sticker-card violet">
-            <div class="sticker-icon">📱</div>
-            <h3>Для разных устройств</h3>
-            <p>Подходит для телефона, планшета или компьютера. Количество устройств зависит от выбранного тарифа.</p>
-          </article>
-          <article class="sticker-card green">
-            <div class="sticker-icon">⚡</div>
-            <h3>Быстрое подключение</h3>
-            <p>Клиент получает понятную инструкцию и может начать пользоваться сервисом сразу после выдачи ключа.</p>
-          </article>
-          <article class="sticker-card orange">
-            <div class="sticker-icon">🤝</div>
-            <h3>Помощь с настройкой</h3>
-            <p>Если что-то не получается, можно написать в поддержку — поможем добавить ключ и проверить подключение.</p>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section soft" id="how">
-      <div class="wrap steps-layout">
-        <div>
-          <div class="eyebrow">Как начать</div>
-          <h2>Три шага до защищённого подключения.</h2>
-          <p class="muted">Страница объясняет процесс простым языком, чтобы клиент не путался и сразу понимал, что делать после покупки.</p>
-        </div>
-        <div class="steps">
-          <div class="step"><span>01</span><div><h3>Выберите тариф</h3><p>Личный, Личный+ или Семейный — по количеству устройств.</p></div></div>
-          <div class="step"><span>02</span><div><h3>Оплатите доступ</h3><p>После оплаты мы подготавливаем ключ для подключения.</p></div></div>
-          <div class="step"><span>03</span><div><h3>Добавьте ключ</h3><p>Введите ключ в приложении и проверьте статус подключения.</p></div></div>
-        </div>
-      </div>
-    </section>
-
-    <section class="section" id="plans">
-      <div class="wrap">
-        <div class="section-head center">
-          <div class="eyebrow">Прайс-лист</div>
-          <h2>Выберите тариф под себя.</h2>
-          <p>Все тарифы дают доступ к защищённому подключению. Разница только в количестве устройств.</p>
-        </div>
-
-        <div class="pricing-grid">
-          <article class="price-card">
-            <div class="plan-badge">Личный</div>
-            <h3>1 устройство</h3>
-            <div class="price">200₽</div>
-            <p>Подходит для одного телефона или компьютера.</p>
-            <ul>
-              <li>1 ключ доступа</li>
-              <li>Инструкция по подключению</li>
-              <li>Помощь при настройке</li>
-            </ul>
-            <a class="btn full secondary" href="pay.html?plan=personal">Купить</a>
-          </article>
-
-          <article class="price-card featured">
-            <div class="popular">Популярный</div>
-            <div class="plan-badge">Личный+</div>
-            <h3>2 устройства</h3>
-            <div class="price">300₽</div>
-            <p>Хороший вариант для телефона и компьютера.</p>
-            <ul>
-              <li>До 2 устройств</li>
-              <li>Один понятный процесс</li>
-              <li>Поддержка настройки</li>
-            </ul>
-            <a class="btn full primary" href="pay.html?plan=plus">Купить</a>
-          </article>
-
-          <article class="price-card">
-            <div class="plan-badge">Семейный</div>
-            <h3>5 устройств</h3>
-            <div class="price">500₽</div>
-            <p>Для семьи или нескольких личных устройств.</p>
-            <ul>
-              <li>До 5 устройств</li>
-              <li>Удобно для дома</li>
-              <li>Помощь каждому устройству</li>
-            </ul>
-            <a class="btn full secondary" href="pay.html?plan=family">Купить</a>
-          </article>
-        </div>
-      </div>
-    </section>
-
-    <section class="section dark-section">
-      <div class="wrap cta-box">
-        <div>
-          <div class="eyebrow light">Готовы начать?</div>
-          <h2>Оформите ключ Skryon и подключите устройство.</h2>
-          <p>На странице оплаты клиент увидит тарифы, краткую инструкцию и сможет выбрать подходящий вариант.</p>
-        </div>
-        <a class="btn white" href="pay.html">Перейти к оплате</a>
-      </div>
-    </section>
-
-    <section class="section" id="faq">
-      <div class="wrap faq-layout">
-        <div>
-          <div class="eyebrow">FAQ</div>
-          <h2>Частые вопросы.</h2>
-        </div>
-        <div class="faq-list">
-          <details open>
-            <summary>Что я получу после оплаты?</summary>
-            <p>Вы получите ключ доступа и короткую инструкцию, как добавить его в приложение.</p>
-          </details>
-          <details>
-            <summary>Можно ли подключить несколько устройств?</summary>
-            <p>Да. Тариф Личный рассчитан на 1 устройство, Личный+ на 2 устройства, Семейный на 5 устройств.</p>
-          </details>
-          <details>
-            <summary>Что делать, если не получилось настроить?</summary>
-            <p>Напишите в поддержку. Мы поможем проверить ключ, приложение и подключение.</p>
-          </details>
-        </div>
-      </div>
-    </section>
-  </main>
-
-  <footer class="footer">
-    <div class="wrap footer-inner">
-      <div>
-        <a class="logo" href="index.html"><span class="logo-mark">S</span><span>Skryon</span></a>
-        <p>Защищённое подключение для личного и семейного использования.</p>
-      </div>
-      <div class="footer-links">
-        <a href="#plans">Тарифы</a>
-        <a href="pay.html">Оплата</a>
-        <a href="#faq">Вопросы</a>
-      </div>
-    </div>
-  </footer>
-</body>
+    </main>
+  </body>
 </html>
