@@ -19,7 +19,7 @@
       --line: rgba(23, 60, 42, 0.18);
       --line-strong: rgba(23, 60, 42, 0.34);
       --error: #6d1616;
-      --shadow: 0 16px 44px rgba(7, 18, 12, 0.18);
+      --shadow: 0 18px 50px rgba(7, 18, 12, 0.18);
     }
 
     * { box-sizing: border-box; }
@@ -59,9 +59,10 @@
       min-height: 100vh;
       min-height: 100svh;
       min-height: 100dvh;
-      padding: calc(38px + env(safe-area-inset-top)) 28px calc(34px + env(safe-area-inset-bottom));
+      padding: calc(38px + env(safe-area-inset-top)) 28px calc(40px + env(safe-area-inset-bottom));
       background: var(--mint);
       color: var(--ink);
+      border-radius: 0;
     }
 
     .result::before {
@@ -81,10 +82,10 @@
     }
 
     .subtitle {
-      margin: 0 0 28px;
+      margin: 0 0 34px;
       max-width: 360px;
       font-size: 15px;
-      line-height: 1.42;
+      line-height: 1.45;
       color: var(--muted);
       font-weight: 700;
     }
@@ -108,13 +109,15 @@
       width: 9px;
       height: 9px;
       background: var(--accent);
+      border-radius: 0;
       flex: 0 0 auto;
     }
 
     .code-card {
-      margin-bottom: 22px;
+      margin-bottom: 26px;
       background: var(--white);
       border: 1px solid var(--line);
+      border-radius: 0;
       overflow: hidden;
     }
 
@@ -148,10 +151,10 @@
 
     .code-value {
       margin: 0;
-      min-height: 76px;
+      min-height: 86px;
       font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
       font-size: 18px;
-      line-height: 1.38;
+      line-height: 1.45;
       font-weight: 800;
       color: var(--ink);
       white-space: pre-wrap;
@@ -164,6 +167,7 @@
       min-height: 56px;
       padding: 18px;
       border: none;
+      border-radius: 0;
       background: var(--accent);
       color: #ffffff;
       font-size: 15px;
@@ -177,21 +181,21 @@
     .copy-btn:disabled { opacity: 0.56; cursor: not-allowed; }
 
     .hint {
-      margin: 12px 0 0;
+      margin: 14px 0 0;
       font-size: 12px;
-      line-height: 1.42;
+      line-height: 1.45;
       font-weight: 700;
       color: var(--muted);
     }
 
     .details {
-      margin: 0 0 20px;
+      margin: 0 0 28px;
       padding: 18px 0 0;
       border-top: 1px solid var(--line);
     }
 
     .details-label {
-      margin-bottom: 12px;
+      margin-bottom: 14px;
       font-size: 11px;
       line-height: 1;
       font-weight: 900;
@@ -205,7 +209,7 @@
       justify-content: space-between;
       align-items: flex-start;
       gap: 18px;
-      padding: 10px 0;
+      padding: 11px 0;
       border-bottom: 1px solid var(--line);
       font-size: 14px;
       font-weight: 700;
@@ -222,8 +226,8 @@
     }
 
     .next {
-      margin-bottom: 18px;
-      padding: 16px;
+      margin-bottom: 24px;
+      padding: 18px;
       background: rgba(255, 255, 255, 0.34);
       border: 1px solid var(--line);
     }
@@ -239,7 +243,7 @@
     .next-text {
       margin: 0;
       font-size: 13px;
-      line-height: 1.42;
+      line-height: 1.45;
       font-weight: 700;
       color: var(--muted);
     }
@@ -253,6 +257,7 @@
       justify-content: center;
       min-height: 54px;
       padding: 17px 18px;
+      border-radius: 0;
       text-decoration: none;
       font-size: 15px;
       line-height: 1;
@@ -277,10 +282,10 @@
     .secondary-link:hover { background: rgba(255, 255, 255, 0.28); }
 
     .status-message {
-      min-height: 18px;
-      margin: 12px 0 0;
+      min-height: 20px;
+      margin: 14px 0 0;
       font-size: 12px;
-      line-height: 1.35;
+      line-height: 1.45;
       font-weight: 800;
       color: var(--muted);
     }
@@ -327,152 +332,94 @@
         min-height: 100svh;
         min-height: 100dvh;
         padding:
-          calc(20px + env(safe-area-inset-top))
-          clamp(16px, 5vw, 22px)
-          calc(18px + env(safe-area-inset-bottom));
+          calc(26px + env(safe-area-inset-top))
+          clamp(18px, 5.6vw, 24px)
+          calc(28px + env(safe-area-inset-bottom));
       }
 
-      .result::before { margin-bottom: 14px; }
-
-      .status-strip {
-        margin-bottom: clamp(14px, 3.8vh, 22px);
-        padding-bottom: clamp(10px, 2.6vh, 14px);
-        font-size: clamp(10px, 3vw, 12px);
-        letter-spacing: 1px;
-      }
-
-      h1 {
-        margin-bottom: 9px;
-        font-size: clamp(36px, 10.8vw, 52px);
-        line-height: 0.9;
-        letter-spacing: -2.1px;
-      }
-
-      .subtitle {
-        max-width: none;
-        margin-bottom: clamp(16px, 4.7vh, 28px);
-        font-size: clamp(14px, 4vw, 18px);
-        line-height: 1.34;
-      }
-
-      .code-card { margin-bottom: clamp(14px, 3.6vh, 24px); }
-
-      .code-head {
-        padding: clamp(14px, 3.3vh, 18px) clamp(15px, 4.4vw, 20px) 0;
-      }
-
-      .code-label {
-        margin-bottom: 9px;
-        font-size: clamp(10px, 3vw, 12px);
-        letter-spacing: 1.3px;
-      }
-
-      .code-title {
-        font-size: clamp(22px, 6.4vw, 31px);
-        line-height: 1.03;
-      }
-
-      .code-box {
-        margin: clamp(14px, 3.6vh, 18px) clamp(15px, 4.4vw, 20px);
-        padding-top: clamp(13px, 3.2vh, 18px);
-      }
-
-      .code-value {
-        min-height: clamp(54px, 10vh, 84px);
-        font-size: clamp(17px, 5vw, 24px);
-        line-height: 1.32;
-        letter-spacing: -0.6px;
-      }
-
-      .copy-btn {
-        min-height: clamp(50px, 7.4vh, 62px);
-        padding: 17px 18px;
-        font-size: clamp(15px, 4.4vw, 19px);
-      }
-
-      .hint {
-        margin-top: 11px;
-        font-size: clamp(11px, 3.4vw, 14px);
-        line-height: 1.35;
-      }
-
-      .details {
-        margin-bottom: clamp(14px, 3.6vh, 22px);
-        padding-top: clamp(12px, 3vh, 18px);
-      }
-
-      .details-label {
-        margin-bottom: 10px;
-        font-size: clamp(10px, 3vw, 12px);
-      }
-
-      .detail-row {
-        padding: clamp(8px, 1.9vh, 11px) 0;
-        gap: 12px;
-        font-size: clamp(13px, 3.8vw, 16px);
-      }
-
-      .detail-row strong {
-        max-width: 64%;
-        font-size: clamp(14px, 4.2vw, 18px);
-      }
-
-      .next {
-        margin-bottom: 14px;
-        padding: 14px;
-      }
-
-      .next-title { font-size: 14px; }
-      .next-text { font-size: 13px; }
-
+      .result::before { margin-bottom: 16px; }
+      .status-strip { margin-bottom: clamp(22px, 6vw, 30px); padding-bottom: 14px; font-size: clamp(10px, 3.2vw, 12px); letter-spacing: 1px; }
+      h1 { margin-bottom: 12px; font-size: clamp(42px, 13.4vw, 58px); line-height: 0.9; letter-spacing: -2.2px; }
+      .subtitle { max-width: none; margin-bottom: clamp(28px, 8vw, 38px); font-size: clamp(16px, 4.6vw, 20px); line-height: 1.38; }
+      .code-card { margin-bottom: clamp(26px, 7vw, 34px); }
+      .code-head { padding: clamp(18px, 5vw, 22px) clamp(17px, 5vw, 22px) 0; }
+      .code-label { margin-bottom: 12px; font-size: clamp(11px, 3.2vw, 13px); letter-spacing: 1.4px; }
+      .code-title { font-size: clamp(25px, 7vw, 34px); line-height: 1.05; }
+      .code-box { margin: clamp(17px, 5vw, 22px); padding-top: clamp(18px, 5vw, 22px); }
+      .code-value { min-height: 92px; font-size: clamp(19px, 5.5vw, 26px); line-height: 1.35; letter-spacing: -0.6px; }
+      .copy-btn { min-height: 64px; padding: 20px 18px; font-size: clamp(17px, 4.8vw, 21px); }
+      .hint { margin-top: 16px; font-size: clamp(13px, 3.8vw, 16px); line-height: 1.42; }
+      .details { margin-bottom: clamp(26px, 7vw, 34px); padding-top: 20px; }
+      .details-label { margin-bottom: 14px; font-size: clamp(11px, 3.2vw, 13px); }
+      .detail-row { padding: 13px 0; gap: 12px; font-size: clamp(15px, 4.3vw, 18px); }
+      .detail-row strong { max-width: 64%; font-size: clamp(16px, 4.8vw, 20px); }
+      .next { margin-bottom: 20px; padding: 16px; }
+      .next-title { font-size: 15px; }
+      .next-text { font-size: 14px; }
       .primary-link,
-      .secondary-link {
-        min-height: clamp(48px, 7vh, 56px);
-        padding: 16px;
-        font-size: 15px;
-      }
+      .secondary-link { min-height: 58px; padding: 18px; font-size: 16px; }
     }
 
     @media (max-width: 640px) and (min-height: 700px) {
       body { overflow: hidden; }
       .page { height: 100dvh; overflow: hidden; }
-      .result { height: 100dvh; overflow: hidden; }
+      .result {
+        height: 100dvh;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+        padding:
+          calc(14px + env(safe-area-inset-top))
+          clamp(16px, 5vw, 22px)
+          calc(14px + env(safe-area-inset-bottom));
+      }
+
+      .result::before { flex: 0 0 auto; margin-bottom: clamp(7px, 1.4svh, 12px); }
+      .status-strip { flex: 0 0 auto; margin-bottom: clamp(10px, 1.8svh, 18px); padding-bottom: clamp(8px, 1.3svh, 12px); font-size: clamp(9px, 1.45svh, 11px); }
+      h1 { flex: 0 0 auto; margin-bottom: clamp(6px, 1svh, 10px); font-size: clamp(34px, 6.4svh, 54px); line-height: 0.88; }
+      .subtitle { flex: 0 0 auto; margin-bottom: clamp(10px, 1.9svh, 18px); font-size: clamp(12px, 1.95svh, 16px); line-height: 1.25; }
+      .code-card { flex: 0 0 auto; margin-bottom: clamp(10px, 1.8svh, 16px); }
+      .code-head { padding: clamp(10px, 1.8svh, 16px) clamp(12px, 3.8vw, 18px) 0; }
+      .code-label { margin-bottom: clamp(5px, 0.9svh, 8px); font-size: clamp(9px, 1.4svh, 11px); }
+      .code-title { font-size: clamp(19px, 3.1svh, 26px); }
+      .code-box { margin: clamp(10px, 1.8svh, 16px) clamp(12px, 3.8vw, 18px); padding-top: clamp(9px, 1.5svh, 14px); }
+      .code-value { min-height: clamp(44px, 7.5svh, 72px); font-size: clamp(15px, 2.7svh, 22px); line-height: 1.22; }
+      .hint { margin-top: clamp(7px, 1.2svh, 10px); font-size: clamp(10px, 1.55svh, 12px); line-height: 1.25; }
+      .copy-btn { min-height: clamp(44px, 6.5svh, 56px); padding: clamp(12px, 2svh, 17px); font-size: clamp(14px, 2.2svh, 17px); }
+      .details { flex: 0 0 auto; margin-bottom: clamp(8px, 1.5svh, 14px); padding-top: clamp(8px, 1.4svh, 12px); }
+      .details-label { margin-bottom: clamp(5px, 0.9svh, 8px); font-size: clamp(9px, 1.4svh, 11px); }
+      .detail-row { padding: clamp(5px, 0.95svh, 8px) 0; font-size: clamp(11px, 1.8svh, 14px); }
+      .detail-row strong { font-size: clamp(12px, 2svh, 15px); }
+      .next { flex: 0 0 auto; margin-bottom: clamp(8px, 1.5svh, 14px); padding: clamp(9px, 1.6svh, 13px); }
+      .next-title { margin-bottom: 4px; font-size: clamp(12px, 1.8svh, 14px); }
+      .next-text { font-size: clamp(10px, 1.55svh, 12px); line-height: 1.28; }
+      .actions { flex: 0 0 auto; grid-template-columns: 1fr 1fr; gap: 8px; }
+      .primary-link,
+      .secondary-link { min-height: clamp(40px, 6svh, 50px); padding: 12px 10px; font-size: clamp(12px, 1.75svh, 14px); text-align: center; }
+      .status-message { flex: 0 0 auto; margin-top: clamp(6px, 1svh, 9px); font-size: clamp(9px, 1.35svh, 11px); line-height: 1.2; }
     }
 
-    @media (max-width: 640px) and (max-height: 780px) {
+    @media (max-width: 640px) and (max-height: 760px) {
       .next { display: none; }
-      .actions { grid-template-columns: 1fr 1fr; gap: 8px; }
-      .primary-link,
-      .secondary-link { min-height: 46px; font-size: 13px; padding: 13px 10px; }
       .status-message { display: none; }
     }
 
-    @media (max-width: 640px) and (max-height: 680px) {
+    @media (max-width: 640px) and (max-height: 699px) {
       body { overflow: auto; }
       .page,
       .result { height: auto; overflow: visible; }
+      .next { display: block; }
+      .status-message { display: block; }
     }
 
     @media (max-width: 380px) {
-      .result {
-        padding-left: 16px;
-        padding-right: 16px;
-      }
-
-      h1 { font-size: 36px; }
-      .subtitle { font-size: 14px; }
-      .code-title { font-size: 21px; }
-      .code-value { font-size: 17px; }
-
-      .detail-row {
-        display: grid;
-        gap: 5px;
-      }
-
-      .detail-row strong {
-        max-width: none;
-        text-align: left;
-      }
+      .result { padding-left: 16px; padding-right: 16px; }
+      h1 { font-size: 40px; }
+      .subtitle { font-size: 15px; }
+      .code-title { font-size: 24px; }
+      .code-value { font-size: 18px; }
+      .detail-row { display: grid; gap: 6px; }
+      .detail-row strong { max-width: none; text-align: left; }
     }
   </style>
 </head>
