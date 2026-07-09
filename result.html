@@ -19,21 +19,34 @@
       --line: rgba(23, 60, 42, 0.18);
       --line-strong: rgba(23, 60, 42, 0.34);
       --error: #6d1616;
+      --shadow: 0 18px 50px rgba(7, 18, 12, 0.18);
     }
 
     * { box-sizing: border-box; }
 
-    html,
+    html {
+      min-height: 100%;
+      background: var(--page-bg);
+      -webkit-text-size-adjust: 100%;
+      text-size-adjust: 100%;
+    }
+
     body {
       margin: 0;
-      min-height: 100%;
+      min-height: 100vh;
+      min-height: 100svh;
       font-family: Arial, Helvetica, sans-serif;
       background: var(--page-bg);
       color: var(--ink);
+      -webkit-font-smoothing: antialiased;
+      text-rendering: geometricPrecision;
     }
+
+    button { font: inherit; -webkit-tap-highlight-color: transparent; }
 
     .page {
       min-height: 100vh;
+      min-height: 100svh;
       min-height: 100dvh;
       display: flex;
       justify-content: flex-end;
@@ -44,11 +57,20 @@
       width: 100%;
       max-width: 460px;
       min-height: 100vh;
+      min-height: 100svh;
       min-height: 100dvh;
-      padding: 44px 28px 40px;
+      padding: calc(38px + env(safe-area-inset-top)) 28px calc(40px + env(safe-area-inset-bottom));
       background: var(--mint);
       color: var(--ink);
       border-radius: 0;
+    }
+
+    .result::before {
+      content: "";
+      display: block;
+      height: 1px;
+      margin-bottom: 18px;
+      background: var(--line);
     }
 
     h1 {
@@ -152,6 +174,7 @@
       line-height: 1;
       font-weight: 900;
       cursor: pointer;
+      touch-action: manipulation;
     }
 
     .copy-btn:hover { background: var(--accent-hover); }
@@ -184,6 +207,7 @@
     .detail-row {
       display: flex;
       justify-content: space-between;
+      align-items: flex-start;
       gap: 18px;
       padding: 11px 0;
       border-bottom: 1px solid var(--line);
@@ -193,6 +217,7 @@
     }
 
     .detail-row strong {
+      max-width: 62%;
       color: var(--ink);
       font-size: 15px;
       font-weight: 900;
@@ -223,10 +248,7 @@
       color: var(--muted);
     }
 
-    .actions {
-      display: grid;
-      gap: 10px;
-    }
+    .actions { display: grid; gap: 10px; }
 
     .primary-link,
     .secondary-link {
@@ -240,6 +262,7 @@
       font-size: 15px;
       line-height: 1;
       font-weight: 900;
+      touch-action: manipulation;
     }
 
     .primary-link {
@@ -290,11 +313,163 @@
     }
 
     @media (max-width: 640px) {
-      .page { justify-content: stretch; }
-      .result { max-width: none; min-height: 100vh; min-height: 100dvh; padding: 0 22px; }
-      h1 { font-size: 48px; }
-      .subtitle { margin-bottom: 30px; font-size: 15px; }
-      .code-value { font-size: 16px; }
+      html,
+      body {
+        width: 100%;
+        overflow-x: hidden;
+        background: var(--mint);
+      }
+
+      .page {
+        display: block;
+        min-height: 100svh;
+        min-height: 100dvh;
+        background: var(--mint);
+      }
+
+      .result {
+        max-width: none;
+        min-height: 100svh;
+        min-height: 100dvh;
+        padding:
+          calc(26px + env(safe-area-inset-top))
+          clamp(18px, 5.6vw, 24px)
+          calc(28px + env(safe-area-inset-bottom));
+      }
+
+      .result::before {
+        margin-bottom: 16px;
+      }
+
+      .status-strip {
+        margin-bottom: clamp(22px, 6vw, 30px);
+        padding-bottom: 14px;
+        font-size: clamp(10px, 3.2vw, 12px);
+        letter-spacing: 1px;
+      }
+
+      h1 {
+        margin-bottom: 12px;
+        font-size: clamp(42px, 13.4vw, 58px);
+        line-height: 0.9;
+        letter-spacing: -2.2px;
+      }
+
+      .subtitle {
+        max-width: none;
+        margin-bottom: clamp(28px, 8vw, 38px);
+        font-size: clamp(16px, 4.6vw, 20px);
+        line-height: 1.38;
+      }
+
+      .code-card {
+        margin-bottom: clamp(26px, 7vw, 34px);
+      }
+
+      .code-head {
+        padding: clamp(18px, 5vw, 22px) clamp(17px, 5vw, 22px) 0;
+      }
+
+      .code-label {
+        margin-bottom: 12px;
+        font-size: clamp(11px, 3.2vw, 13px);
+        letter-spacing: 1.4px;
+      }
+
+      .code-title {
+        font-size: clamp(25px, 7vw, 34px);
+        line-height: 1.05;
+      }
+
+      .code-box {
+        margin: clamp(17px, 5vw, 22px);
+        padding-top: clamp(18px, 5vw, 22px);
+      }
+
+      .code-value {
+        min-height: 92px;
+        font-size: clamp(19px, 5.5vw, 26px);
+        line-height: 1.35;
+        letter-spacing: -0.6px;
+      }
+
+      .copy-btn {
+        min-height: 64px;
+        padding: 20px 18px;
+        font-size: clamp(17px, 4.8vw, 21px);
+      }
+
+      .hint {
+        margin-top: 16px;
+        font-size: clamp(13px, 3.8vw, 16px);
+        line-height: 1.42;
+      }
+
+      .details {
+        margin-bottom: clamp(26px, 7vw, 34px);
+        padding-top: 20px;
+      }
+
+      .details-label {
+        margin-bottom: 14px;
+        font-size: clamp(11px, 3.2vw, 13px);
+      }
+
+      .detail-row {
+        padding: 13px 0;
+        gap: 12px;
+        font-size: clamp(15px, 4.3vw, 18px);
+      }
+
+      .detail-row strong {
+        max-width: 64%;
+        font-size: clamp(16px, 4.8vw, 20px);
+      }
+
+      .next {
+        margin-bottom: 20px;
+        padding: 16px;
+      }
+
+      .next-title {
+        font-size: 15px;
+      }
+
+      .next-text {
+        font-size: 14px;
+      }
+
+      .primary-link,
+      .secondary-link {
+        min-height: 58px;
+        padding: 18px;
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 380px) {
+      .result {
+        padding-left: 16px;
+        padding-right: 16px;
+      }
+
+      h1 { font-size: 40px; }
+
+      .subtitle { font-size: 15px; }
+
+      .code-title { font-size: 24px; }
+
+      .code-value { font-size: 18px; }
+
+      .detail-row {
+        display: grid;
+        gap: 6px;
+      }
+
+      .detail-row strong {
+        max-width: none;
+        text-align: left;
+      }
     }
   </style>
 </head>
