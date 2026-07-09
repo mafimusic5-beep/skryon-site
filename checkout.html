@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="robots" content="noindex,nofollow" />
+  <meta name="referrer" content="no-referrer" />
+  <title>Оформление подписки</title>
+
+  <style>
+    :root {
+      --page-bg: #050505;
+      --checkout-bg: #99ddb8;
+      --ink: #07120c;
+      --muted: #3d5846;
+      --accent: #173c2a;
+      --accent-hover: #205e3e;
+      --surface: #ffffff;
+      --line: rgba(23, 60, 42, 0.18);
+      --line-strong: rgba(23, 60, 42, 0.34);
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: Arial, Helvetica, sans-serif;
+      background: var(--page-bg);
+      color: var(--ink);
+    }
+
+    .page {
+      min-height: 100vh;
+      min-height: 100dvh;
+      display: flex;
+      justify-content: flex-end;
+      background: var(--page-bg);
+    }
+
+    .checkout {
+      width: 100%;
+      max-width: 460px;
+      min-height: 100vh;
+      min-height: 100dvh;
+      padding: 44px 28px 40px;
+      background: var(--checkout-bg);
+      color: var(--ink);
+      border-radius: 0;
+    }
+
+    h1 {
+      margin: 0 0 12px;
+      font-size: 36px;
+      line-height: 0.95;
+      font-weight: 900;
+      letter-spacing: -1.4px;
+    }
+
+    .subtitle {
+      margin: 0 0 34px;
+      max-width: 340px;
+      font-size: 15px;
+      line-height: 1.45;
+      color: var(--muted);
+      font-weight: 600;
+    }
+
+    .section-label {
+      margin-bottom: 10px;
+      font-size: 12px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0.4px;
+      color: var(--ink);
+    }
+
+    .capacity {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 24px;
+    }
+
+    .capacity-btn {
+      min-height: 42px;
+      padding: 10px 12px;
+      border: 1px solid var(--line);
+      border-bottom: 2px solid transparent;
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.28);
+      color: var(--muted);
+      font-size: 14px;
+      font-weight: 900;
+      cursor: pointer;
+      text-align: left;
+    }
+
+    .capacity-btn span {
+      display: block;
+      margin-top: 3px;
+      font-size: 11px;
+      font-weight: 800;
+      color: inherit;
+      opacity: 0.8;
+    }
+
+    .capacity-btn.active {
+      background: rgba(255, 255, 255, 0.52);
+      color: var(--ink);
+      border-color: var(--line-strong);
+      border-bottom-color: var(--accent);
+    }
+
+    .capacity-btn:hover { border-color: var(--line-strong); }
+
+    .capacity-btn:focus-visible,
+    .plan:focus-within,
+    .cta:focus-visible {
+      outline: 2px solid var(--accent);
+      outline-offset: 2px;
+    }
+
+    .plans {
+      display: grid;
+      gap: 10px;
+      margin-bottom: 24px;
+    }
+
+    .plan {
+      position: relative;
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 16px;
+      align-items: start;
+      padding: 18px;
+      background: var(--surface);
+      border: 1px solid var(--line);
+      color: var(--ink);
+      border-radius: 0;
+      cursor: pointer;
+      transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease;
+    }
+
+    .plan:hover { border-color: var(--line-strong); }
+
+    .plan input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .plan-name {
+      display: block;
+      margin-bottom: 7px;
+      font-size: 18px;
+      line-height: 1.1;
+      font-weight: 900;
+      letter-spacing: -0.3px;
+    }
+
+    .plan-meta {
+      display: block;
+      font-size: 12px;
+      line-height: 1.2;
+      font-weight: 800;
+      color: var(--muted);
+    }
+
+    .plan-price {
+      font-size: 24px;
+      line-height: 1;
+      font-weight: 900;
+      white-space: nowrap;
+      letter-spacing: -0.6px;
+    }
+
+    .plan.active {
+      background: var(--accent);
+      border-color: var(--accent);
+      color: #ffffff;
+    }
+
+    .plan.active .plan-meta { color: rgba(255, 255, 255, 0.74); }
+
+    .summary {
+      margin-bottom: 22px;
+      padding: 18px 0 0;
+      border-top: 1px solid var(--line);
+    }
+
+    .summary-label {
+      margin-bottom: 14px;
+      font-size: 11px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 1.3px;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+
+    .summary-row {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding: 10px 0;
+      border-bottom: 1px solid var(--line);
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .summary-row strong {
+      color: var(--ink);
+      font-weight: 900;
+      text-align: right;
+    }
+
+    .summary-total {
+      display: flex;
+      justify-content: space-between;
+      gap: 18px;
+      padding-top: 18px;
+      font-size: 15px;
+      font-weight: 900;
+      color: var(--ink);
+    }
+
+    .summary-total strong {
+      font-size: 30px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: -0.9px;
+    }
+
+    .cta {
+      width: 100%;
+      min-height: 54px;
+      padding: 17px 18px;
+      border: none;
+      border-radius: 0;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 16px;
+      line-height: 1;
+      font-weight: 900;
+      cursor: pointer;
+    }
+
+    .cta:hover { background: var(--accent-hover); }
+    .cta:disabled { opacity: .65; cursor: wait; }
+
+    .trust {
+      margin: 14px 0 0;
+      font-size: 12px;
+      line-height: 1.45;
+      font-weight: 700;
+      color: var(--muted);
+    }
+
+    .sr-only {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    @media (max-width: 640px) {
+      .page { justify-content: stretch; }
+      .checkout { max-width: none; padding: 34px 22px; }
+      h1 { font-size: 32px; }
+      .capacity-btn { min-height: 40px; padding: 9px 10px; }
+      .plan { padding: 16px; }
+      .plan-price { font-size: 22px; }
+    }
+  </style>
+</head>
+
+<body>
+  <main class="page">
+    <section class="checkout" aria-labelledby="checkoutTitle">
+      <h1 id="checkoutTitle">Оформление</h1>
+      <p class="subtitle">Выберите тариф — количество пользователей указано в карточке.</p>
+
+      <div class="section-label">Количество пользователей</div>
+      <div class="capacity" id="capacity" role="radiogroup" aria-label="Количество пользователей"></div>
+
+      <div class="section-label">Тариф</div>
+      <div class="plans" id="plans"></div>
+
+      <section class="summary" aria-label="Итого">
+        <div class="summary-label">Итого</div>
+
+        <div class="summary-row">
+          <span>Тариф</span>
+          <strong id="selectedPlan">Личный</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Пользователей</span>
+          <strong id="selectedUsers">1 пользователь</strong>
+        </div>
+
+        <div class="summary-total">
+          <span>К оплате</span>
+          <strong id="selectedPrice">200 ₽</strong>
+        </div>
+      </section>
+
+      <button class="cta" type="button" id="payButton">Перейти к оплате</button>
+      <p class="trust">Защищённая страница оплаты. Данные карты не храним.</p>
+      <div class="sr-only" id="planStatus" role="status" aria-live="polite"></div>
+    </section>
+  </main>
+
+  <script>
+    const fallbackPlans = [
+      { id: 'personal', name: 'Личный', price: 200, users: 1, usersText: '1 пользователь' },
+      { id: 'personal_plus', name: 'Личный+', price: 219, users: 2, usersText: '2 пользователя' },
+      { id: 'family', name: 'Семейный', price: 500, users: 5, usersText: '5 пользователей' }
+    ];
+
+    const priceById = { personal: 200, personal_plus: 219, family: 500 };
+    const usersById = { personal: 1, personal_plus: 2, family: 5 };
+
+    const capacityEl = document.getElementById('capacity');
+    const plansEl = document.getElementById('plans');
+    const selectedPlan = document.getElementById('selectedPlan');
+    const selectedUsers = document.getElementById('selectedUsers');
+    const selectedPrice = document.getElementById('selectedPrice');
+    const planStatus = document.getElementById('planStatus');
+    const payButton = document.getElementById('payButton');
+
+    let plans = fallbackPlans;
+    let currentPlan = fallbackPlans[0];
+
+    function formatPrice(value) {
+      return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
+    }
+
+    function usersTextFromNumber(value) {
+      const n = Number(value);
+      if (n === 1) return '1 пользователь';
+      if (n >= 2 && n <= 4) return n + ' пользователя';
+      return n + ' пользователей';
+    }
+
+    function normalizePlans(data) {
+      let raw = [];
+
+      if (Array.isArray(data)) {
+        raw = data.map((plan, index) => [plan.id || plan.key || plan.code || plan.slug || plan.plan || fallbackPlans[index]?.id || String(index), plan]);
+      } else if (data && Array.isArray(data.plans)) {
+        raw = data.plans.map((plan, index) => [plan.id || plan.key || plan.code || plan.slug || plan.plan || fallbackPlans[index]?.id || String(index), plan]);
+      } else if (data && data.plans && typeof data.plans === 'object') {
+        raw = Object.entries(data.plans);
+      } else if (data && typeof data === 'object') {
+        raw = Object.entries(data).filter(([key, value]) => value && typeof value === 'object');
+      }
+
+      if (!raw.length) return fallbackPlans;
+
+      return raw.slice(0, 3).map(([backendId, p], index) => {
+        const fallback = fallbackPlans[index] || fallbackPlans[0];
+        const users = Number(p.devices ?? p.max_devices ?? p.users ?? p.people ?? usersById[backendId] ?? fallback.users);
+        const price = Number(p.price ?? p.amount ?? p.amount_rub ?? p.rub ?? priceById[backendId] ?? fallback.price);
+        const name = p.name || p.title || p.label || p.plan_name || p.plan || fallback.name;
+
+        return {
+          id: backendId,
+          name,
+          price,
+          users,
+          usersText: p.usersText || p.people_text || usersTextFromNumber(users)
+        };
+      });
+    }
+
+    function setActivePlan(planId) {
+      currentPlan = plans.find((plan) => String(plan.id) === String(planId)) || plans[0];
+
+      selectedPlan.textContent = currentPlan.name;
+      selectedUsers.textContent = currentPlan.usersText;
+      selectedPrice.textContent = formatPrice(currentPlan.price);
+
+      document.querySelectorAll('.capacity-btn').forEach((button) => {
+        const isActive = String(button.dataset.plan) === String(currentPlan.id);
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-checked', String(isActive));
+      });
+
+      document.querySelectorAll('.plan').forEach((card) => {
+        const input = card.querySelector('input[name="plan"]');
+        const isActive = String(input.value) === String(currentPlan.id);
+        input.checked = isActive;
+        card.classList.toggle('active', isActive);
+      });
+
+      planStatus.textContent = 'Выбран тариф ' + currentPlan.name + ', ' + currentPlan.usersText + ', ' + currentPlan.price + ' рублей.';
+    }
+
+    function renderPlans() {
+      capacityEl.innerHTML = plans.map((plan, index) => `
+        <button
+          class="capacity-btn ${index === 0 ? 'active' : ''}"
+          type="button"
+          role="radio"
+          aria-checked="${index === 0 ? 'true' : 'false'}"
+          data-plan="${plan.id}"
+        >
+          ${plan.users}
+          <span>${plan.users === 1 ? 'пользователь' : plan.users >= 2 && plan.users <= 4 ? 'пользователя' : 'пользователей'}</span>
+        </button>
+      `).join('');
+
+      plansEl.innerHTML = plans.map((plan, index) => `
+        <label class="plan ${index === 0 ? 'active' : ''}">
+          <input type="radio" name="plan" value="${plan.id}" data-price="${plan.price}" data-users="${plan.usersText}" ${index === 0 ? 'checked' : ''} />
+          <span>
+            <span class="plan-name">${plan.name}</span>
+            <span class="plan-meta">${plan.usersText}</span>
+          </span>
+          <span class="plan-price">${formatPrice(plan.price)}</span>
+        </label>
+      `).join('');
+
+      document.querySelectorAll('input[name="plan"]').forEach((input) => {
+        input.addEventListener('change', () => setActivePlan(input.value));
+      });
+
+      document.querySelectorAll('.capacity-btn').forEach((button) => {
+        button.addEventListener('click', () => setActivePlan(button.dataset.plan));
+      });
+
+      setActivePlan(plans[0].id);
+    }
+
+    async function loadPlans() {
+      try {
+        const response = await fetch('/api/checkout/plans', { cache: 'no-store' });
+        if (!response.ok) throw new Error('plans_load_failed');
+        plans = normalizePlans(await response.json());
+      } catch (e) {
+        plans = fallbackPlans;
+      }
+
+      renderPlans();
+    }
+
+    payButton.addEventListener('click', async () => {
+      payButton.disabled = true;
+      payButton.textContent = 'Создаём заказ...';
+
+      try {
+        const response = await fetch('/api/checkout/get-code', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ plan: currentPlan.id, customer: '' })
+        });
+
+        const data = await response.json().catch(() => ({}));
+        if (!response.ok) throw new Error(data.detail || 'checkout_failed');
+
+        if (data.redirectUrl) {
+          window.location.href = data.redirectUrl;
+          return;
+        }
+
+        if (data.redirect_url) {
+          window.location.href = data.redirect_url;
+          return;
+        }
+
+        if (data.order || data.external_id) {
+          window.location.href = '/checkout/code?order=' + encodeURIComponent(data.order || data.external_id);
+          return;
+        }
+
+        alert('Заказ создан');
+      } catch (error) {
+        alert('Ошибка оформления: ' + (error.message || 'попробуйте ещё раз.'));
+      } finally {
+        payButton.disabled = false;
+        payButton.textContent = 'Перейти к оплате';
+      }
+    });
+
+    loadPlans();
+  </script>
+</body>
+</html>
