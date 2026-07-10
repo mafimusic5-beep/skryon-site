@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
   <meta name="robots" content="noindex,nofollow" />
   <meta name="referrer" content="no-referrer" />
-  <title>Оформление доступа</title>
+  <title>Оформление подписки</title>
 
   <style>
     :root {
@@ -18,8 +18,9 @@
       --surface: #ffffff;
       --line: rgba(23, 60, 42, 0.18);
       --line-strong: rgba(23, 60, 42, 0.34);
+      --soft: rgba(255, 255, 255, 0.32);
+      --error: #6d1616;
       --shadow: 0 18px 50px rgba(7, 18, 12, 0.18);
-      --error: #7a1919;
     }
 
     * { box-sizing: border-box; }
@@ -63,66 +64,35 @@
       min-height: 100vh;
       min-height: 100svh;
       min-height: 100dvh;
-      padding: calc(36px + env(safe-area-inset-top)) 28px calc(38px + env(safe-area-inset-bottom));
+      padding: 44px 28px 40px;
       background: var(--checkout-bg);
       color: var(--ink);
       border-radius: 0;
     }
 
+    .checkout::before {
+      content: "";
+      display: block;
+      height: 1px;
+      margin-bottom: 18px;
+      background: var(--line);
+    }
+
     h1 {
-      margin: 0 0 10px;
-      font-size: 38px;
-      line-height: 0.92;
+      margin: 0 0 12px;
+      font-size: 36px;
+      line-height: 0.95;
       font-weight: 900;
-      letter-spacing: -1.6px;
+      letter-spacing: -1.4px;
     }
 
     .subtitle {
-      margin: 0 0 22px;
+      margin: 0 0 24px;
       max-width: 360px;
       font-size: 15px;
-      line-height: 1.42;
+      line-height: 1.45;
       color: var(--muted);
-      font-weight: 650;
-    }
-
-    .mode-switch {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 8px;
-      margin-bottom: 22px;
-    }
-
-    .mode-btn {
-      min-height: 58px;
-      padding: 12px;
-      border: 1px solid var(--line);
-      border-bottom: 2px solid transparent;
-      border-radius: 0;
-      background: rgba(255, 255, 255, 0.28);
-      color: var(--muted);
-      font-size: 14px;
-      line-height: 1.05;
-      font-weight: 900;
-      text-align: left;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-
-    .mode-btn span {
-      display: block;
-      margin-top: 5px;
-      font-size: 11px;
-      line-height: 1.05;
-      font-weight: 800;
-      opacity: .76;
-    }
-
-    .mode-btn.active {
-      background: rgba(255, 255, 255, 0.52);
-      color: var(--ink);
-      border-color: var(--line-strong);
-      border-bottom-color: var(--accent);
+      font-weight: 600;
     }
 
     .section-label {
@@ -134,117 +104,114 @@
       color: var(--ink);
     }
 
-    .renew-panel {
-      margin-bottom: 22px;
-      padding-bottom: 20px;
-      border-bottom: 1px solid var(--line);
-    }
-
-    .renew-panel[hidden],
-    .renew-card[hidden],
-    .summary-row[hidden] {
-      display: none !important;
-    }
-
-    .code-input-row {
+    .mode-tabs,
+    .duration {
       display: grid;
-      grid-template-columns: minmax(0, 1fr) auto;
+      grid-template-columns: repeat(2, 1fr);
       gap: 8px;
-      margin-bottom: 10px;
+      margin-bottom: 20px;
     }
 
-    .code-input {
-      min-width: 0;
-      min-height: 50px;
-      padding: 15px 14px;
-      border: 1px solid var(--line);
-      border-radius: 0;
-      background: rgba(255, 255, 255, 0.52);
-      color: var(--ink);
-      font-size: 15px;
-      line-height: 1;
-      font-weight: 900;
-      letter-spacing: .4px;
-      outline: none;
-      text-transform: uppercase;
+    .duration {
+      grid-template-columns: repeat(4, 1fr);
     }
 
-    .code-input::placeholder { color: rgba(7, 18, 12, .42); }
-
-    .find-btn {
-      min-height: 50px;
-      padding: 15px 16px;
-      border: none;
-      border-radius: 0;
-      background: var(--accent);
-      color: #ffffff;
-      font-size: 14px;
-      line-height: 1;
-      font-weight: 900;
-      cursor: pointer;
-      touch-action: manipulation;
-    }
-
-    .find-btn:disabled { opacity: .6; cursor: wait; }
-
-    .renew-status {
-      min-height: 18px;
-      margin: 0;
-      font-size: 12px;
-      line-height: 1.4;
-      font-weight: 800;
-      color: var(--muted);
-    }
-
-    .renew-status.ok { color: var(--accent); }
-    .renew-status.error { color: var(--error); }
-
-    .renew-card {
-      display: grid;
-      gap: 8px;
-      margin-top: 12px;
-      padding: 14px;
-      background: rgba(255, 255, 255, .34);
-      border: 1px solid var(--line);
-    }
-
-    .renew-card-row {
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      font-size: 12px;
-      line-height: 1.25;
-      font-weight: 750;
-      color: var(--muted);
-    }
-
-    .renew-card-row strong {
-      color: var(--ink);
-      font-weight: 900;
-      text-align: right;
-      overflow-wrap: anywhere;
-    }
-
-    .capacity {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 22px;
-    }
-
+    .mode-btn,
+    .duration-btn,
     .capacity-btn {
       min-height: 42px;
-      padding: 10px 12px;
+      padding: 10px 10px;
       border: 1px solid var(--line);
       border-bottom: 2px solid transparent;
       border-radius: 0;
       background: rgba(255, 255, 255, 0.28);
       color: var(--muted);
-      font-size: 14px;
+      font-size: 13px;
       font-weight: 900;
       cursor: pointer;
       text-align: left;
       touch-action: manipulation;
+    }
+
+    .mode-btn.active,
+    .duration-btn.active,
+    .capacity-btn.active {
+      background: rgba(255, 255, 255, 0.54);
+      color: var(--ink);
+      border-color: var(--line-strong);
+      border-bottom-color: var(--accent);
+    }
+
+    .mode-btn:hover,
+    .duration-btn:hover,
+    .capacity-btn:hover { border-color: var(--line-strong); }
+
+    .code-panel {
+      display: none;
+      margin-bottom: 20px;
+      padding: 14px;
+      background: rgba(255, 255, 255, 0.34);
+      border: 1px solid var(--line);
+    }
+
+    .code-panel.active { display: block; }
+
+    .code-row {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 8px;
+    }
+
+    .code-input {
+      min-width: 0;
+      height: 46px;
+      padding: 0 12px;
+      border: 1px solid var(--line-strong);
+      border-radius: 0;
+      background: rgba(255, 255, 255, 0.72);
+      color: var(--ink);
+      font-size: 14px;
+      line-height: 1;
+      font-weight: 800;
+      text-transform: uppercase;
+      outline: none;
+    }
+
+    .code-input::placeholder { color: rgba(7, 18, 12, 0.42); text-transform: none; }
+
+    .find-btn {
+      height: 46px;
+      padding: 0 14px;
+      border: none;
+      border-radius: 0;
+      background: var(--accent);
+      color: #ffffff;
+      font-size: 13px;
+      line-height: 1;
+      font-weight: 900;
+      cursor: pointer;
+      touch-action: manipulation;
+    }
+
+    .find-btn:disabled { opacity: .65; cursor: wait; }
+
+    .code-info {
+      min-height: 18px;
+      margin: 10px 0 0;
+      color: var(--muted);
+      font-size: 12px;
+      line-height: 1.35;
+      font-weight: 800;
+    }
+
+    .code-info.error { color: var(--error); }
+    .code-info.ok { color: var(--accent); }
+
+    .capacity {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 8px;
+      margin-bottom: 20px;
     }
 
     .capacity-btn span {
@@ -256,17 +223,10 @@
       opacity: 0.8;
     }
 
-    .capacity-btn.active {
-      background: rgba(255, 255, 255, 0.52);
-      color: var(--ink);
-      border-color: var(--line-strong);
-      border-bottom-color: var(--accent);
-    }
-
     .plans {
       display: grid;
       gap: 10px;
-      margin-bottom: 22px;
+      margin-bottom: 20px;
     }
 
     .plan {
@@ -275,7 +235,6 @@
       grid-template-columns: minmax(0, 1fr) auto;
       gap: 16px;
       align-items: center;
-      min-height: 72px;
       padding: 16px;
       background: var(--surface);
       border: 1px solid var(--line);
@@ -285,6 +244,8 @@
       transition: background 0.15s ease, color 0.15s ease, border-color 0.15s ease, transform 0.15s ease;
       touch-action: manipulation;
     }
+
+    .plan:hover { border-color: var(--line-strong); }
 
     .plan input {
       position: absolute;
@@ -310,7 +271,7 @@
     }
 
     .plan-price {
-      font-size: 24px;
+      font-size: 23px;
       line-height: 1;
       font-weight: 900;
       white-space: nowrap;
@@ -326,13 +287,13 @@
     .plan.active .plan-meta { color: rgba(255, 255, 255, 0.74); }
 
     .summary {
-      margin-bottom: 20px;
-      padding: 18px 0 0;
+      margin-bottom: 18px;
+      padding: 16px 0 0;
       border-top: 1px solid var(--line);
     }
 
     .summary-label {
-      margin-bottom: 12px;
+      margin-bottom: 11px;
       font-size: 11px;
       line-height: 1;
       font-weight: 900;
@@ -345,7 +306,7 @@
       display: flex;
       justify-content: space-between;
       gap: 18px;
-      padding: 9px 0;
+      padding: 8px 0;
       border-bottom: 1px solid var(--line);
       font-size: 14px;
       font-weight: 700;
@@ -356,7 +317,6 @@
       color: var(--ink);
       font-weight: 900;
       text-align: right;
-      overflow-wrap: anywhere;
     }
 
     .summary-total {
@@ -392,8 +352,9 @@
       touch-action: manipulation;
     }
 
-    .cta:hover, .find-btn:hover { background: var(--accent-hover); }
-    .cta:disabled { opacity: .55; cursor: not-allowed; }
+    .cta:hover,
+    .find-btn:hover { background: var(--accent-hover); }
+    .cta:disabled { opacity: .65; cursor: wait; }
 
     .trust {
       margin: 12px 0 0;
@@ -416,11 +377,12 @@
     }
 
     .mode-btn:focus-visible,
+    .duration-btn:focus-visible,
     .capacity-btn:focus-visible,
     .plan:focus-within,
-    .code-input:focus-visible,
+    .cta:focus-visible,
     .find-btn:focus-visible,
-    .cta:focus-visible {
+    .code-input:focus-visible {
       outline: 2px solid var(--accent);
       outline-offset: 2px;
     }
@@ -447,49 +409,45 @@
         padding:
           calc(22px + env(safe-area-inset-top))
           clamp(16px, 5vw, 22px)
-          calc(24px + env(safe-area-inset-bottom));
+          calc(22px + env(safe-area-inset-bottom));
       }
 
-      h1 {
-        margin-bottom: 8px;
-        font-size: clamp(32px, 9.5vw, 42px);
-        line-height: 0.9;
-      }
-
-      .subtitle {
-        margin-bottom: 18px;
-        font-size: clamp(13px, 3.7vw, 15px);
-        line-height: 1.32;
-      }
-
-      .mode-switch { gap: 7px; margin-bottom: 18px; }
-      .mode-btn { min-height: 52px; padding: 10px; font-size: 13px; }
-      .mode-btn span { margin-top: 4px; font-size: 10px; }
-      .renew-panel { margin-bottom: 18px; padding-bottom: 16px; }
-      .section-label { margin-bottom: 8px; font-size: 11px; }
-      .code-input-row { grid-template-columns: 1fr; }
-      .code-input, .find-btn { min-height: 48px; }
-      .capacity { gap: 7px; margin-bottom: 18px; }
-      .capacity-btn { min-height: 42px; padding: 9px 8px; font-size: 14px; }
-      .capacity-btn span { font-size: 10px; }
-      .plans { gap: 8px; margin-bottom: 18px; }
-      .plan { min-height: 62px; padding: 13px 12px; gap: 10px; }
-      .plan-name { margin-bottom: 4px; font-size: 16px; }
-      .plan-meta { font-size: 11px; }
-      .plan-price { font-size: 21px; }
-      .summary { margin-bottom: 16px; padding-top: 14px; }
+      .checkout::before { margin-bottom: 12px; }
+      h1 { margin-bottom: 8px; font-size: clamp(32px, 9.4vw, 42px); line-height: 0.92; letter-spacing: -1.8px; }
+      .subtitle { max-width: none; margin-bottom: 18px; font-size: clamp(13px, 3.7vw, 15px); line-height: 1.32; }
+      .section-label { margin-bottom: 8px; font-size: 10.5px; letter-spacing: 0.55px; }
+      .mode-tabs,
+      .duration { gap: 7px; margin-bottom: 16px; }
+      .mode-btn,
+      .duration-btn,
+      .capacity-btn { min-height: 42px; padding: 9px 8px; font-size: clamp(12px, 3.4vw, 14px); }
+      .duration-btn { text-align: center; }
+      .code-panel { margin-bottom: 16px; padding: 12px; }
+      .code-row { grid-template-columns: 1fr; }
+      .code-input,
+      .find-btn { height: 44px; }
+      .capacity { gap: 7px; margin-bottom: 16px; }
+      .capacity-btn span { margin-top: 2px; font-size: clamp(9px, 2.7vw, 10px); line-height: 1.05; }
+      .plans { gap: 8px; margin-bottom: 16px; }
+      .plan { min-height: 64px; padding: 13px 12px; gap: 10px; }
+      .plan:active { transform: scale(0.992); }
+      .plan-name { margin-bottom: 4px; font-size: clamp(16px, 4.4vw, 18px); }
+      .plan-meta { font-size: clamp(10px, 3vw, 12px); }
+      .plan-price { font-size: clamp(18px, 5.2vw, 23px); letter-spacing: -0.8px; }
+      .summary { margin-bottom: 14px; padding-top: 14px; }
       .summary-label { margin-bottom: 8px; font-size: 10px; }
-      .summary-row { padding: 7px 0; font-size: 13px; }
+      .summary-row { padding: 7px 0; gap: 12px; font-size: clamp(12px, 3.5vw, 14px); }
       .summary-total { padding-top: 13px; font-size: 14px; }
-      .summary-total strong { font-size: 28px; }
-      .cta { min-height: 54px; padding: 17px; font-size: 15px; }
-      .trust { display: none; }
+      .summary-total strong { font-size: clamp(25px, 7vw, 32px); }
+      .cta { min-height: 54px; padding: 17px 18px; font-size: 16px; }
+      .trust { margin-top: 10px; padding-bottom: 4px; font-size: 11px; }
     }
 
     @media (max-width: 380px) {
       .checkout { padding-left: 16px; padding-right: 16px; }
       .plan { grid-template-columns: 1fr; gap: 8px; }
       .plan-price { justify-self: start; }
+      .duration { grid-template-columns: repeat(2, 1fr); }
     }
   </style>
 </head>
@@ -498,34 +456,25 @@
   <main class="page">
     <section class="checkout" aria-labelledby="checkoutTitle">
       <h1 id="checkoutTitle">Оформление</h1>
-      <p class="subtitle" id="checkoutSubtitle">Купите новый код или продлите уже существующий.</p>
+      <p class="subtitle" id="subtitle">Купите новый код или продлите уже существующий.</p>
 
-      <div class="mode-switch" role="tablist" aria-label="Тип оформления">
-        <button class="mode-btn active" type="button" data-mode="buy" role="tab" aria-selected="true">
-          Купить код
-          <span>Новый доступ</span>
-        </button>
-        <button class="mode-btn" type="button" data-mode="renew" role="tab" aria-selected="false">
-          Продлить код
-          <span>Уже есть код</span>
-        </button>
+      <div class="section-label">Действие</div>
+      <div class="mode-tabs" role="tablist" aria-label="Действие с кодом">
+        <button class="mode-btn active" type="button" data-mode="new" aria-selected="true">Купить код</button>
+        <button class="mode-btn" type="button" data-mode="renew" aria-selected="false">Продлить код</button>
       </div>
 
-      <section class="renew-panel" id="renewPanel" aria-label="Поиск кода" hidden>
+      <div class="code-panel" id="codePanel">
         <div class="section-label">Найти код</div>
-        <div class="code-input-row">
-          <input class="code-input" id="existingCodeInput" type="text" inputmode="text" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="A-ABC-12-34-56-Z" aria-label="Код доступа" />
+        <div class="code-row">
+          <input class="code-input" id="renewCode" type="text" inputmode="latin" autocomplete="off" placeholder="Введите код доступа" />
           <button class="find-btn" type="button" id="findCodeButton">Найти</button>
         </div>
-        <p class="renew-status" id="renewStatus">Введите код, чтобы проверить срок и продлить его.</p>
+        <p class="code-info" id="codeInfo">Введите действующий код, который нужно продлить.</p>
+      </div>
 
-        <div class="renew-card" id="renewCard" hidden>
-          <div class="renew-card-row"><span>Код</span><strong id="foundCodeValue">—</strong></div>
-          <div class="renew-card-row"><span>План</span><strong id="foundPlanValue">—</strong></div>
-          <div class="renew-card-row"><span>Устройств</span><strong id="foundDevicesValue">—</strong></div>
-          <div class="renew-card-row"><span>Действует до</span><strong id="foundExpiresValue">—</strong></div>
-        </div>
-      </section>
+      <div class="section-label">Срок</div>
+      <div class="duration" id="duration" role="radiogroup" aria-label="Срок доступа"></div>
 
       <div class="section-label">Количество пользователей</div>
       <div class="capacity" id="capacity" role="radiogroup" aria-label="Количество пользователей"></div>
@@ -538,17 +487,17 @@
 
         <div class="summary-row">
           <span>Действие</span>
-          <strong id="selectedAction">Покупка кода</strong>
-        </div>
-
-        <div class="summary-row" id="renewSummaryRow" hidden>
-          <span>Код</span>
-          <strong id="selectedCode">—</strong>
+          <strong id="selectedAction">Новый код</strong>
         </div>
 
         <div class="summary-row">
           <span>Тариф</span>
           <strong id="selectedPlan">Личный</strong>
+        </div>
+
+        <div class="summary-row">
+          <span>Срок</span>
+          <strong id="selectedDuration">1 месяц</strong>
         </div>
 
         <div class="summary-row">
@@ -575,27 +524,21 @@
       { id: 'family', name: 'Семейный', price: 500, users: 5, usersText: '5 пользователей' }
     ];
 
+    const durationOptions = [1, 3, 6, 12];
     const priceById = { personal: 200, personal_plus: 219, family: 500 };
     const usersById = { personal: 1, personal_plus: 2, family: 5 };
 
-    const checkoutTitle = document.getElementById('checkoutTitle');
-    const checkoutSubtitle = document.getElementById('checkoutSubtitle');
-    const modeButtons = document.querySelectorAll('.mode-btn');
-    const renewPanel = document.getElementById('renewPanel');
-    const existingCodeInput = document.getElementById('existingCodeInput');
+    const subtitle = document.getElementById('subtitle');
+    const codePanel = document.getElementById('codePanel');
+    const renewCode = document.getElementById('renewCode');
     const findCodeButton = document.getElementById('findCodeButton');
-    const renewStatus = document.getElementById('renewStatus');
-    const renewCard = document.getElementById('renewCard');
-    const foundCodeValue = document.getElementById('foundCodeValue');
-    const foundPlanValue = document.getElementById('foundPlanValue');
-    const foundDevicesValue = document.getElementById('foundDevicesValue');
-    const foundExpiresValue = document.getElementById('foundExpiresValue');
+    const codeInfo = document.getElementById('codeInfo');
+    const durationEl = document.getElementById('duration');
     const capacityEl = document.getElementById('capacity');
     const plansEl = document.getElementById('plans');
     const selectedAction = document.getElementById('selectedAction');
-    const renewSummaryRow = document.getElementById('renewSummaryRow');
-    const selectedCode = document.getElementById('selectedCode');
     const selectedPlan = document.getElementById('selectedPlan');
+    const selectedDuration = document.getElementById('selectedDuration');
     const selectedUsers = document.getElementById('selectedUsers');
     const selectedPrice = document.getElementById('selectedPrice');
     const planStatus = document.getElementById('planStatus');
@@ -603,8 +546,9 @@
 
     let plans = fallbackPlans;
     let currentPlan = fallbackPlans[0];
-    let mode = 'buy';
-    let foundCode = '';
+    let currentMode = 'new';
+    let currentMonths = 1;
+    let foundCode = null;
 
     function formatPrice(value) {
       return String(value).replace(/\B(?=(\d{3})+(?!\d))/g, ' ') + ' ₽';
@@ -617,21 +561,22 @@
       return n + ' пользователей';
     }
 
+    function durationText(months) {
+      const n = Number(months);
+      if (n === 1) return '1 месяц';
+      if (n >= 2 && n <= 4) return n + ' месяца';
+      return n + ' месяцев';
+    }
+
+    function normalizeCode(value) {
+      return String(value || '').trim().toUpperCase();
+    }
+
     function formatDate(dateValue) {
       if (!dateValue) return '—';
       const date = new Date(dateValue);
-      if (Number.isNaN(date.getTime())) return dateValue;
-      return new Intl.DateTimeFormat('ru-RU', {
-        day: '2-digit', month: 'long', year: 'numeric'
-      }).format(date);
-    }
-
-    function formatDevices(count) {
-      if (count === null || count === undefined || count === '') return '—';
-      const n = Number(count);
-      if (n === 1) return '1 устройство';
-      if (n >= 2 && n <= 4) return n + ' устройства';
-      return n + ' устройств';
+      if (Number.isNaN(date.getTime())) return String(dateValue);
+      return new Intl.DateTimeFormat('ru-RU', { day: '2-digit', month: 'long', year: 'numeric' }).format(date);
     }
 
     function normalizePlans(data) {
@@ -665,45 +610,48 @@
       });
     }
 
-    function updatePayButton() {
-      if (mode === 'renew' && !foundCode) {
-        payButton.disabled = true;
-        payButton.textContent = 'Сначала найдите код';
-        return;
-      }
+    function updateSummary() {
+      selectedAction.textContent = currentMode === 'renew' ? 'Продление кода' : 'Новый код';
+      selectedPlan.textContent = currentPlan.name;
+      selectedDuration.textContent = durationText(currentMonths);
+      selectedUsers.textContent = currentPlan.usersText;
+      selectedPrice.textContent = formatPrice(currentPlan.price * currentMonths);
+      payButton.textContent = currentMode === 'renew' ? 'Продлить код' : 'Купить код';
+      subtitle.textContent = currentMode === 'renew'
+        ? 'Введите существующий код и выберите срок продления.'
+        : 'Выберите тариф, срок и получите новый код доступа.';
 
-      payButton.disabled = false;
-      payButton.textContent = mode === 'renew' ? 'Продлить код' : 'Купить код';
+      planStatus.textContent = selectedAction.textContent + ', ' + currentPlan.name + ', ' + durationText(currentMonths) + ', ' + selectedPrice.textContent;
     }
 
-    function setMode(nextMode) {
-      mode = nextMode;
-      foundCode = mode === 'buy' ? '' : foundCode;
+    function setMode(mode) {
+      currentMode = mode === 'renew' ? 'renew' : 'new';
+      foundCode = null;
+      codePanel.classList.toggle('active', currentMode === 'renew');
+      codeInfo.className = 'code-info';
+      codeInfo.textContent = currentMode === 'renew' ? 'Введите действующий код, который нужно продлить.' : '';
 
-      modeButtons.forEach((button) => {
-        const active = button.dataset.mode === mode;
-        button.classList.toggle('active', active);
-        button.setAttribute('aria-selected', String(active));
+      document.querySelectorAll('.mode-btn').forEach((button) => {
+        const isActive = button.dataset.mode === currentMode;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-selected', String(isActive));
       });
 
-      renewPanel.hidden = mode !== 'renew';
-      selectedAction.textContent = mode === 'renew' ? 'Продление кода' : 'Покупка кода';
-      renewSummaryRow.hidden = mode !== 'renew' || !foundCode;
-      selectedCode.textContent = foundCode || '—';
-      checkoutTitle.textContent = mode === 'renew' ? 'Продление' : 'Оформление';
-      checkoutSubtitle.textContent = mode === 'renew'
-        ? 'Введите существующий код, найдите его и выберите тариф для продления.'
-        : 'Купите новый код доступа и выберите нужное количество пользователей.';
-      planStatus.textContent = mode === 'renew' ? 'Выбран режим продления кода.' : 'Выбран режим покупки нового кода.';
-      updatePayButton();
+      updateSummary();
+    }
+
+    function setDuration(months) {
+      currentMonths = Number(months) || 1;
+      document.querySelectorAll('.duration-btn').forEach((button) => {
+        const isActive = Number(button.dataset.months) === currentMonths;
+        button.classList.toggle('active', isActive);
+        button.setAttribute('aria-checked', String(isActive));
+      });
+      updateSummary();
     }
 
     function setActivePlan(planId) {
       currentPlan = plans.find((plan) => String(plan.id) === String(planId)) || plans[0];
-
-      selectedPlan.textContent = currentPlan.name;
-      selectedUsers.textContent = currentPlan.usersText;
-      selectedPrice.textContent = formatPrice(currentPlan.price);
 
       document.querySelectorAll('.capacity-btn').forEach((button) => {
         const isActive = String(button.dataset.plan) === String(currentPlan.id);
@@ -718,18 +666,24 @@
         card.classList.toggle('active', isActive);
       });
 
-      planStatus.textContent = 'Выбран тариф ' + currentPlan.name + ', ' + currentPlan.usersText + ', ' + currentPlan.price + ' рублей.';
+      updateSummary();
+    }
+
+    function renderDurations() {
+      durationEl.innerHTML = durationOptions.map((months) => `
+        <button class="duration-btn ${months === currentMonths ? 'active' : ''}" type="button" role="radio" aria-checked="${months === currentMonths ? 'true' : 'false'}" data-months="${months}">
+          ${durationText(months)}
+        </button>
+      `).join('');
+
+      document.querySelectorAll('.duration-btn').forEach((button) => {
+        button.addEventListener('click', () => setDuration(button.dataset.months));
+      });
     }
 
     function renderPlans() {
       capacityEl.innerHTML = plans.map((plan, index) => `
-        <button
-          class="capacity-btn ${index === 0 ? 'active' : ''}"
-          type="button"
-          role="radio"
-          aria-checked="${index === 0 ? 'true' : 'false'}"
-          data-plan="${plan.id}"
-        >
+        <button class="capacity-btn ${index === 0 ? 'active' : ''}" type="button" role="radio" aria-checked="${index === 0 ? 'true' : 'false'}" data-plan="${plan.id}">
           ${plan.users}
           <span>${plan.users === 1 ? 'пользователь' : plan.users >= 2 && plan.users <= 4 ? 'пользователя' : 'пользователей'}</span>
         </button>
@@ -737,7 +691,7 @@
 
       plansEl.innerHTML = plans.map((plan, index) => `
         <label class="plan ${index === 0 ? 'active' : ''}">
-          <input type="radio" name="plan" value="${plan.id}" data-price="${plan.price}" data-users="${plan.usersText}" ${index === 0 ? 'checked' : ''} />
+          <input type="radio" name="plan" value="${plan.id}" ${index === 0 ? 'checked' : ''} />
           <span>
             <span class="plan-name">${plan.name}</span>
             <span class="plan-meta">${plan.usersText}</span>
@@ -766,25 +720,25 @@
         plans = fallbackPlans;
       }
 
+      renderDurations();
       renderPlans();
-      setMode('buy');
+      updateSummary();
     }
 
-    async function findExistingCode() {
-      const code = existingCodeInput.value.trim();
+    async function findCode() {
+      const code = normalizeCode(renewCode.value);
+      foundCode = null;
+
       if (!code) {
-        renewStatus.textContent = 'Введите код доступа.';
-        renewStatus.className = 'renew-status error';
+        codeInfo.className = 'code-info error';
+        codeInfo.textContent = 'Введите код для поиска.';
         return;
       }
 
       findCodeButton.disabled = true;
       findCodeButton.textContent = 'Ищем...';
-      renewStatus.textContent = 'Проверяем код...';
-      renewStatus.className = 'renew-status';
-      renewCard.hidden = true;
-      foundCode = '';
-      updatePayButton();
+      codeInfo.className = 'code-info';
+      codeInfo.textContent = 'Проверяем код...';
 
       try {
         const response = await fetch('/api/checkout/find-code', {
@@ -792,60 +746,52 @@
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ code })
         });
-
         const data = await response.json().catch(() => ({}));
         if (!response.ok || !data.ok) throw new Error(data.reason || 'not_found');
 
-        foundCode = data.code;
-        foundCodeValue.textContent = data.code || '—';
-        foundPlanValue.textContent = data.planTitle || data.plan || '—';
-        foundDevicesValue.textContent = formatDevices(data.maxDevices);
-        foundExpiresValue.textContent = formatDate(data.expiresAt);
-        selectedCode.textContent = foundCode;
-        renewSummaryRow.hidden = false;
-        renewCard.hidden = false;
-        renewStatus.textContent = 'Код найден. Выберите тариф и нажмите «Продлить код».';
-        renewStatus.className = 'renew-status ok';
-
-        if (data.plan && plans.some((plan) => String(plan.id) === String(data.plan))) {
-          setActivePlan(data.plan);
-        }
+        foundCode = data.code || code;
+        renewCode.value = foundCode;
+        codeInfo.className = 'code-info ok';
+        codeInfo.textContent = 'Код найден. План: ' + (data.planTitle || data.plan || '—') + '. Действует до: ' + formatDate(data.expiresAt) + '.';
       } catch (error) {
-        foundCode = '';
-        selectedCode.textContent = '—';
-        renewSummaryRow.hidden = true;
-        renewStatus.textContent = 'Код не найден. Проверьте символы и попробуйте ещё раз.';
-        renewStatus.className = 'renew-status error';
+        codeInfo.className = 'code-info error';
+        codeInfo.textContent = 'Код не найден. Проверьте строку и попробуйте ещё раз.';
       } finally {
         findCodeButton.disabled = false;
         findCodeButton.textContent = 'Найти';
-        updatePayButton();
       }
     }
 
-    async function submitCheckout() {
-      if (mode === 'renew' && !foundCode) {
-        alert('Сначала найдите код для продления.');
+    payButton.addEventListener('click', async () => {
+      const endpoint = currentMode === 'renew' ? '/api/checkout/renew-code' : '/api/checkout/get-code';
+      const code = normalizeCode(renewCode.value);
+
+      if (currentMode === 'renew' && !code) {
+        codeInfo.className = 'code-info error';
+        codeInfo.textContent = 'Введите код, который нужно продлить.';
+        renewCode.focus();
         return;
       }
 
       payButton.disabled = true;
-      payButton.textContent = mode === 'renew' ? 'Продлеваем...' : 'Создаём заказ...';
+      payButton.textContent = currentMode === 'renew' ? 'Продлеваем...' : 'Создаём заказ...';
 
       try {
-        const endpoint = mode === 'renew' ? '/api/checkout/renew-code' : '/api/checkout/get-code';
-        const payload = mode === 'renew'
-          ? { plan: currentPlan.id, customer: '', code: foundCode }
-          : { plan: currentPlan.id, customer: '' };
+        const body = {
+          plan: currentPlan.id,
+          customer: '',
+          months: currentMonths
+        };
+        if (currentMode === 'renew') body.code = code;
 
         const response = await fetch(endpoint, {
           method: 'POST',
           headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify(payload)
+          body: JSON.stringify(body)
         });
 
         const data = await response.json().catch(() => ({}));
-        if (!response.ok || !data.ok) throw new Error(data.detail || data.reason || 'checkout_failed');
+        if (!response.ok || data.ok === false) throw new Error(data.detail || data.reason || 'checkout_failed');
 
         if (data.redirectUrl) {
           window.location.href = data.redirectUrl;
@@ -862,31 +808,23 @@
           return;
         }
 
-        alert(mode === 'renew' ? 'Код продлён' : 'Заказ создан');
+        alert(currentMode === 'renew' ? 'Код продлён' : 'Заказ создан');
       } catch (error) {
         alert('Ошибка оформления: ' + (error.message || 'попробуйте ещё раз.'));
       } finally {
-        updatePayButton();
+        payButton.disabled = false;
+        updateSummary();
       }
-    }
+    });
 
-    modeButtons.forEach((button) => button.addEventListener('click', () => setMode(button.dataset.mode)));
-    findCodeButton.addEventListener('click', findExistingCode);
-    existingCodeInput.addEventListener('keydown', (event) => {
-      if (event.key === 'Enter') findExistingCode();
+    document.querySelectorAll('.mode-btn').forEach((button) => {
+      button.addEventListener('click', () => setMode(button.dataset.mode));
     });
-    existingCodeInput.addEventListener('input', () => {
-      if (foundCode) {
-        foundCode = '';
-        renewCard.hidden = true;
-        renewSummaryRow.hidden = true;
-        selectedCode.textContent = '—';
-        renewStatus.textContent = 'Код изменён. Нажмите «Найти» ещё раз.';
-        renewStatus.className = 'renew-status';
-        updatePayButton();
-      }
+
+    findCodeButton.addEventListener('click', findCode);
+    renewCode.addEventListener('keydown', (event) => {
+      if (event.key === 'Enter') findCode();
     });
-    payButton.addEventListener('click', submitCheckout);
 
     loadPlans();
   </script>
