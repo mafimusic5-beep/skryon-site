@@ -19,7 +19,6 @@
       --line: rgba(23, 60, 42, 0.18);
       --line-strong: rgba(23, 60, 42, 0.34);
       --error: #6d1616;
-      --shadow: 0 18px 50px rgba(7, 18, 12, 0.18);
     }
 
     * { box-sizing: border-box; }
@@ -66,7 +65,6 @@
       padding: 44px 28px 40px;
       background: var(--checkout-bg);
       color: var(--ink);
-      border-radius: 0;
     }
 
     .checkout::before {
@@ -195,46 +193,6 @@
     .code-info.error { color: var(--error); }
     .code-info.ok { color: var(--accent); }
 
-    .capacity {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 8px;
-      margin-bottom: 20px;
-    }
-
-    .capacity-btn {
-      min-height: 42px;
-      padding: 10px 10px;
-      border: 1px solid var(--line);
-      border-bottom: 2px solid transparent;
-      border-radius: 0;
-      background: rgba(255, 255, 255, 0.28);
-      color: var(--muted);
-      font-size: 13px;
-      font-weight: 900;
-      cursor: pointer;
-      text-align: left;
-      touch-action: manipulation;
-    }
-
-    .capacity-btn.active {
-      background: rgba(255, 255, 255, 0.54);
-      color: var(--ink);
-      border-color: var(--line-strong);
-      border-bottom-color: var(--accent);
-    }
-
-    .capacity-btn:hover { border-color: var(--line-strong); }
-
-    .capacity-btn span {
-      display: block;
-      margin-top: 3px;
-      font-size: 11px;
-      font-weight: 800;
-      color: inherit;
-      opacity: 0.8;
-    }
-
     .plans {
       display: grid;
       gap: 10px;
@@ -290,13 +248,25 @@
       letter-spacing: -0.6px;
     }
 
+    .plan-price small {
+      display: block;
+      margin-top: 5px;
+      color: var(--muted);
+      font-size: 10px;
+      line-height: 1;
+      font-weight: 900;
+      letter-spacing: 0;
+      text-align: right;
+    }
+
     .plan.active {
       background: var(--accent);
       border-color: var(--accent);
       color: #ffffff;
     }
 
-    .plan.active .plan-meta { color: rgba(255, 255, 255, 0.74); }
+    .plan.active .plan-meta,
+    .plan.active .plan-price small { color: rgba(255, 255, 255, 0.74); }
 
     .month-picker {
       display: grid;
@@ -464,7 +434,6 @@
     }
 
     .mode-btn:focus-visible,
-    .capacity-btn:focus-visible,
     .plan:focus-within,
     .cta:focus-visible,
     .find-btn:focus-visible,
@@ -505,20 +474,18 @@
       .subtitle { max-width: none; margin-bottom: 18px; font-size: clamp(13px, 3.7vw, 15px); line-height: 1.32; }
       .section-label { margin-bottom: 8px; font-size: 10.5px; letter-spacing: 0.55px; }
       .mode-tabs { gap: 6px; margin-bottom: 16px; }
-      .mode-btn,
-      .capacity-btn { min-height: 42px; padding: 9px 8px; font-size: clamp(12px, 3.4vw, 14px); }
+      .mode-btn { min-height: 42px; padding: 9px 8px; font-size: clamp(12px, 3.4vw, 14px); }
       .code-panel { margin-bottom: 16px; padding: 12px; }
       .code-row { grid-template-columns: 1fr; }
       .code-input,
       .find-btn { height: 44px; }
-      .capacity { gap: 7px; margin-bottom: 16px; }
-      .capacity-btn span { margin-top: 2px; font-size: clamp(9px, 2.7vw, 10px); line-height: 1.05; }
       .plans { gap: 8px; margin-bottom: 16px; }
       .plan { min-height: 64px; padding: 13px 12px; gap: 10px; }
       .plan:active { transform: scale(0.992); }
       .plan-name { margin-bottom: 4px; font-size: clamp(16px, 4.4vw, 18px); }
       .plan-meta { font-size: clamp(10px, 3vw, 12px); }
       .plan-price { font-size: clamp(18px, 5.2vw, 23px); letter-spacing: -0.8px; }
+      .plan-price small { font-size: 9px; }
       .month-picker { min-height: 70px; margin-bottom: 16px; padding: 13px 12px; gap: 10px; }
       .month-title { margin-bottom: 4px; font-size: clamp(16px, 4.4vw, 18px); }
       .month-hint { font-size: clamp(10px, 3vw, 12px); }
@@ -538,6 +505,7 @@
       .checkout { padding-left: 16px; padding-right: 16px; }
       .plan { grid-template-columns: 1fr; gap: 8px; }
       .plan-price { justify-self: start; }
+      .plan-price small { text-align: left; }
       .month-picker { grid-template-columns: 1fr; }
       .month-control { justify-content: start; }
     }
@@ -564,9 +532,6 @@
         </div>
         <p class="code-info" id="codeInfo">Введите действующий код, который нужно продлить.</p>
       </div>
-
-      <div class="section-label">Количество пользователей</div>
-      <div class="capacity" id="capacity" role="radiogroup" aria-label="Количество пользователей"></div>
 
       <div class="section-label">Тариф</div>
       <div class="plans" id="plans"></div>
@@ -636,7 +601,6 @@
     const renewCode = document.getElementById('renewCode');
     const findCodeButton = document.getElementById('findCodeButton');
     const codeInfo = document.getElementById('codeInfo');
-    const capacityEl = document.getElementById('capacity');
     const plansEl = document.getElementById('plans');
     const monthInput = document.getElementById('monthInput');
     const monthMinus = document.getElementById('monthMinus');
@@ -764,12 +728,6 @@
     function setActivePlan(planId) {
       currentPlan = plans.find((plan) => String(plan.id) === String(planId)) || plans[0];
 
-      document.querySelectorAll('.capacity-btn').forEach((button) => {
-        const isActive = String(button.dataset.plan) === String(currentPlan.id);
-        button.classList.toggle('active', isActive);
-        button.setAttribute('aria-checked', String(isActive));
-      });
-
       document.querySelectorAll('.plan').forEach((card) => {
         const input = card.querySelector('input[name="plan"]');
         const isActive = String(input.value) === String(currentPlan.id);
@@ -781,13 +739,6 @@
     }
 
     function renderPlans() {
-      capacityEl.innerHTML = plans.map((plan, index) => `
-        <button class="capacity-btn ${index === 0 ? 'active' : ''}" type="button" role="radio" aria-checked="${index === 0 ? 'true' : 'false'}" data-plan="${plan.id}">
-          ${plan.users}
-          <span>${plan.users === 1 ? 'пользователь' : plan.users >= 2 && plan.users <= 4 ? 'пользователя' : 'пользователей'}</span>
-        </button>
-      `).join('');
-
       plansEl.innerHTML = plans.map((plan, index) => `
         <label class="plan ${index === 0 ? 'active' : ''}">
           <input type="radio" name="plan" value="${plan.id}" ${index === 0 ? 'checked' : ''} />
@@ -795,16 +746,12 @@
             <span class="plan-name">${plan.name}</span>
             <span class="plan-meta">${plan.usersText}</span>
           </span>
-          <span class="plan-price">${formatPrice(plan.price)}</span>
+          <span class="plan-price">${formatPrice(plan.price)}<small>в месяц</small></span>
         </label>
       `).join('');
 
       document.querySelectorAll('input[name="plan"]').forEach((input) => {
         input.addEventListener('change', () => setActivePlan(input.value));
-      });
-
-      document.querySelectorAll('.capacity-btn').forEach((button) => {
-        button.addEventListener('click', () => setActivePlan(button.dataset.plan));
       });
 
       setActivePlan(plans[0].id);
